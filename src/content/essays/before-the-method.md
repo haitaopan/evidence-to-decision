@@ -4,7 +4,7 @@ description: "A method can be statistically elegant and still answer the wrong q
 pubDate: 2026-10-23
 topics:
   - "Clinical Trials"
-  - "Decision Making"
+  - "Evidence & Decisions"
 draft: true
 featured: false
 ---

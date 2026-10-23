@@ -3,8 +3,8 @@ title: "Who Can Respond? Measurable Disease and the Hidden Denominator"
 description: "What response rates conceal about who is eligible to respond."
 pubDate: 2026-10-23
 topics:
-  - "Endpoints"
-  - "Phase II Trials"
+  - "Oncology & Rare Diseases"
+  - "Clinical Trials"
 draft: true
 featured: false
 ---

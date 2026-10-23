@@ -3,8 +3,8 @@ title: "A Digital Twin Is Not an RCT"
 description: "What prediction and causal comparison can—and cannot—tell us."
 pubDate: 2026-10-23
 topics:
-  - "External Evidence"
-  - "AI"
+  - "External Controls"
+  - "AI & Methods"
 draft: true
 featured: false
 ---

@@ -3,7 +3,7 @@ title: "What a DSMB Actually Needs to See"
 description: "The difference between a data display and decision-ready monitoring evidence."
 pubDate: 2026-10-23
 topics:
-  - "DSMB"
+  - "DSMB & Monitoring"
   - "Clinical Trials"
 draft: true
 featured: false
