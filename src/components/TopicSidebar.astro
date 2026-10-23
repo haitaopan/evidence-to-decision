@@ -1,14 +1,15 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { TOPICS, topicSlug } from '../lib/topics';
-const {posts, activeTopic} = Astro.props as {posts:CollectionEntry<'essays'>[];activeTopic?:string};
+const {posts,activeTopic} = Astro.props as {posts:CollectionEntry<'essays'>[];activeTopic?:string};
 const root=import.meta.env.BASE_URL.replace(/\/$/,'');
 ---
 <aside class="topic-sidebar" aria-label="Browse by topic">
   <h2>Topics</h2>
   <ul>{TOPICS.map(topic=><li>
     <a class:list={[{active:topic===activeTopic}]} href={`${root}/topics/${topicSlug(topic)}/`} aria-current={topic===activeTopic?'page':undefined}>
-      <span>{topic}</span><span class="topic-count">{posts.filter(post=>post.data.topics.includes(topic)).length}</span>
+      <span>{topic}</span>
+      {posts.filter(post=>post.data.topics.includes(topic)).length>0 && <span class="topic-count">{posts.filter(post=>post.data.topics.includes(topic)).length}</span>}
     </a>
   </li>)}</ul>
   {activeTopic && <a class="all-topics" href={`${root}/essays/`}>← All essays</a>}

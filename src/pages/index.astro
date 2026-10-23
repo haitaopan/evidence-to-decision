@@ -3,20 +3,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PostList from '../components/PostList.astro';
 import TopicSidebar from '../components/TopicSidebar.astro';
 import { getCollection } from 'astro:content';
-const all=await getCollection('essays');
-const published=all.filter(e=>!e.data.draft).sort((a,b)=>b.data.pubDate.valueOf()-a.data.pubDate.valueOf()||a.data.title.localeCompare(b.data.title));
-const preview=import.meta.env.DEV && published.length===0;
-const drafts=preview?all.filter(e=>e.data.draft).sort((a,b)=>a.data.title.localeCompare(b.data.title)):[];
-const list=preview?drafts:published.slice(0,10);
+const published=(await getCollection('essays',({data})=>!data.draft))
+  .sort((a,b)=>b.data.pubDate.valueOf()-a.data.pubDate.valueOf() || a.data.title.localeCompare(b.data.title));
+const base=import.meta.env.BASE_URL.replace(/\/$/,'');
 ---
 <BaseLayout>
-<div class="intro"><h1>Evidence to Decision</h1>
+<div class="intro">
+<h1>Evidence to Decision</h1>
 <p class="tagline">Clinical trials, evidence, and the decisions between them.</p>
-<p class="author">Haitao Pan, PhD</p></div>
+<p class="author">Haitao Pan, PhD</p>
+</div>
 <div class="blog-layout">
-<section class="blog-main" aria-labelledby="latest-heading">
-<div class="feed-heading"><h2 id="latest-heading">Latest posts</h2>{preview && <span>Editorial preview only</span>}</div>
-<PostList posts={list} preview={preview}/>
-{published.length>10 && <a class="archive-link" href={`${import.meta.env.BASE_URL.replace(/\/$/,'')}/essays/`}>View all posts →</a>}
-</section><TopicSidebar posts={published}/></div>
+  <section class="blog-main" aria-labelledby="latest-heading">
+    <div class="feed-heading"><h2 id="latest-heading">Latest posts</h2></div>
+    <PostList posts={published.slice(0,10)} />
+    {published.length>10 && <a class="archive-link" href={`${base}/essays/`}>View all posts →</a>}
+  </section>
+  <TopicSidebar posts={published}/>
+</div>
 </BaseLayout>
