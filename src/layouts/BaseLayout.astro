@@ -1,34 +1,24 @@
 ---
 import 'katex/dist/katex.min.css';
 import '../styles/global.css';
-const { title = 'Evidence to Decision', description = 'Clinical trials, evidence, and the decisions between them.' } = Astro.props;
-const base = import.meta.env.BASE_URL.replace(/\/$/,'');
-const path = (p: string) => `${base}${p}`;
-const canonical = new URL(Astro.url.pathname, Astro.site || Astro.url.origin).toString();
+const {title='Evidence to Decision',description='Clinical trials, evidence, and the decisions between them.'}=Astro.props;
+const base=import.meta.env.BASE_URL.replace(/\/$/,'');
+const path=(p:string)=>`${base}${p}`;
+const canonical=new URL(Astro.url.pathname,Astro.site||Astro.url.origin).toString();
 ---
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="theme-color" content="#f8f7f3" />
-<meta name="description" content={description} />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="Evidence to Decision" />
-<meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
-<meta property="og:url" content={canonical} />
-<meta name="twitter:card" content="summary" />
-<link rel="canonical" href={canonical} />
-<link rel="icon" href={path('/favicon.svg')} type="image/svg+xml" />
-<link rel="alternate" type="application/rss+xml" title="Evidence to Decision RSS" href={path('/rss.xml')} />
-<title>{title === 'Evidence to Decision' ? title + ' | Haitao Pan' : title + ' | Evidence to Decision'}</title>
-</head>
-<body>
-<a class="skip" href="#content">Skip to content</a>
-<div class="site-shell">
-<header class="top"><a class="brand" href={path('/')}><span>Evidence to Decision</span><small>Haitao Pan</small></a><nav aria-label="Primary"><a href={path('/essays/')}>Essays</a><a href={path('/research/')}>Research</a><a href={path('/teaching/')}>Teaching</a><a href={path('/podcast/')}>Podcast</a><a href={path('/about/')}>About</a></nav></header>
-<main id="content"><slot /></main>
-<footer><div class="footer-left"><strong>Evidence to Decision</strong><p>Ideas about clinical evidence and the decisions it supports.</p><small>Personal views; not necessarily those of employers or collaborators.</small></div><div class="footer-right"><a href={path('/rss.xml')}>RSS</a><a href="https://github.com/haitaopan">GitHub</a><a href="https://orcid.org/0000-0003-4457-7349">ORCID</a><span>© {new Date().getFullYear()} Haitao Pan</span></div></footer>
-</div>
-</body></html>
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#ffffff"/><meta name="description" content={description}/>
+<meta property="og:type" content="website"/><meta property="og:site_name" content="Evidence to Decision"/>
+<meta property="og:title" content={title}/><meta property="og:description" content={description}/>
+<meta property="og:url" content={canonical}/><meta name="twitter:card" content="summary"/>
+<link rel="canonical" href={canonical}/><link rel="icon" href={path('/favicon.svg')} type="image/svg+xml"/>
+<link rel="alternate" type="application/rss+xml" title="Evidence to Decision RSS" href={path('/rss.xml')}/>
+<title>{title === 'Evidence to Decision' ? title+' | Haitao Pan' : title+' | Evidence to Decision'}</title>
+</head><body><a class="skip" href="#content">Skip to content</a><div class="site-shell">
+<header class="top"><a class="brand" href={path('/')} aria-label="Evidence to Decision home">Evidence to Decision</a>
+<nav aria-label="Primary navigation"><a href={path('/')}>Home</a><a href={path('/essays/')}>Archive</a><a href={path('/about/')}>About</a></nav>
+</header><main id="content"><slot /></main>
+<footer><div>© {new Date().getFullYear()} Haitao Pan · Views are personal and do not necessarily represent those of my employer or collaborators.</div>
+<div class="footer-links"><a href={path('/rss.xml')}>RSS</a><a href="https://orcid.org/0000-0003-4457-7349">ORCID</a></div></footer>
+</div></body></html>
