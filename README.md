@@ -1,33 +1,32 @@
-# Evidence to Decision | Haitao Pan
+# Evidence to Decision | Haitao Pan, PhD
 
-A minimal, private-development Astro personal blog for scientific essays.
+A minimal Astro blog for scientific essays and reflections on evidence and clinical decisions.
 
 ## Site design
-- The homepage lists blog posts in reverse chronological order, with each article's publication date, title, and short summary.
+- The homepage lists posts in reverse chronological order, with a full publication date, title, and summary.
 - The right sidebar groups posts by six topics; mobile layouts move topics below the posts.
 - Navigation contains only **Home**, **Archive**, and **About**.
-- Content is stored in Markdown/MDX files under `src/content/essays/`.
-- **No posts have been written or published yet.** The site intentionally contains no sample articles or draft previews. The `templates/essay-template.md` file is an unpublished authoring template, not blog content.
-- Publication and DNS configuration remain disabled.
+- Content is in Markdown/MDX under `src/content/essays/`. The essay layout supplies a full publication date, author byline `Haitao Pan, PhD`, and a clear source/attribution notice.
+- Posts are published by setting `draft: false` in their frontmatter after a confidentiality review.
+- All posts are the author's personal views; no institution is listed in the byline.
 
 ## Local preview
-Requires Node.js 22+. Run:
+Requires Node.js 22+:
 
 ```bash
 npm install
 npm run dev
 ```
 
-For a production build: `npm run build`, then `npm run preview`.
+For production: `npm run build` and `npm run preview`.
 
-## Publication process (not active)
-1. Keep `haitaopan/evidence-to-decision` **private** until explicit approval to publish.
-2. Draft new essays on an `essay/` branch using `templates/essay-template.md`.
-3. Review sources, links, and `PUBLICATION_SAFETY.md` before changing `draft: true` to `draft: false`.
-4. Review and merge PRs after approval. `main` must contain only public-safe source.
-5. After **separate deployment approval**, enable `.github/workflows/deploy.yml.disabled` and configure GitHub Pages plus the right site/base.
-6. After separate approval, verify and connect the purchased `evidencetodecision.org` domain per current GitHub HTTPS/DNS instructions.
+## Deployment
+The `.github/workflows/deploy.yml` workflow is prepared for GitHub Pages on pushes to `main`. To make the site publicly visible:
+1. Set repository visibility to **Public** (if required by the account's GitHub Pages plan) and choose **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+2. Verify the deployment at `https://haitaopan.github.io/evidence-to-decision/`.
+3. To use `evidencetodecision.org`, configure the GitHub Pages custom domain and DNS. Then change build `PUBLIC_SITE_URL` to `https://evidencetodecision.org` and `PUBLIC_BASE_PATH` to an empty string (both can be supplied as workflow env vars), and set up HTTPS.
+4. Do not announce the domain as live until it has been verified from outside GitHub.
 
-**Important:** `draft: true` is not a privacy boundary; if the repository becomes public, its entire Git history is exposed. Never commit confidential trial information.
+**Copyright/attribution:** Please credit Haitao Pan, PhD and link to the original article on *Evidence to Decision* when quoting, sharing, or republishing.
 
-See `EDITORIAL_GUIDE.md` and `PUBLICATION_SAFETY.md`.
+See `EDITORIAL_GUIDE.md` and `PUBLICATION_SAFETY.md` before posting. No patient-level, confidential study, DSMB, internal protocol, or collaborator information may be committed, whether or not the repository is private.
