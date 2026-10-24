@@ -4,8 +4,8 @@ import sitemap from '@astrojs/sitemap';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 
-const site = process.env.PUBLIC_SITE_URL || 'https://haitaopan.github.io';
-const base = process.env.PUBLIC_BASE_PATH ?? '/evidence-to-decision';
+const site = process.env.PUBLIC_SITE_URL || 'https://evidencetodecision.org';
+const base = process.env.PUBLIC_BASE_PATH ?? '/';
 export default defineConfig({
   site,
   base,
