@@ -85,6 +85,13 @@ const countries=byCountry.map(r=>({
  views:cleanInt(r.metricValues?.[0]?.value),
  activeUsers:cleanInt(r.metricValues?.[1]?.value)
 })).filter(r=>/^[A-Z]{2}$/.test(r.code)&&r.views>0).sort((a,b)=>b.views-a.views);
+// GA4 realtime reports can show activity before the standard reporting API
+// finishes processing it. Never publish a false cumulative zero or replace
+// the last verified positive snapshot with an empty, provisional response.
+if (totals.views === 0 && totals.activeUsers === 0 && pages.length === 0 && countries.length === 0) {
+ console.log('GA4 daily summary has not returned verified activity; preserving existing public snapshot.');
+ process.exit(0);
+}
 const output={
  status:'ready',
  source:'Google Analytics 4',

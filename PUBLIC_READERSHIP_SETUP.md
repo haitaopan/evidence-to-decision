@@ -1,6 +1,6 @@
 # Public Global Readership dashboard
 
-The public global-readership feature is **implemented but intentionally shows “—” until real, verified GA4 aggregates are configured.** Never insert demo counters into the public website.
+The public global-readership feature is deployed and the read-only GA4 service account has successfully authenticated. The initial Data API daily aggregate was empty even though the user's Realtime report had activity. The public site therefore **shows “—” until GA4 returns verified processed data**, rather than treating an empty report as zero visits. Never insert demo counters into the public website.
 
 - Homepage: the Global Readership section displays totals and a world map. Link to `/readership/`.
 - Article pages: byline shows measured cumulative views; the homepage article listing shows views per post.
@@ -30,4 +30,4 @@ The workflow checks for a configured GitHub Actions secret before attempting any
 
 If the action fails, check the message for a missing property ID, Data API not enabled, or the service account lacking Viewer access. Do not share workflow logs that accidentally contain secrets. Once configured, updates run automatically every day and new essay URLs are picked up without any new analytics setup.
 
-**Note:** The first public snapshot may contain only a handful of views, because the blog and analytics property are new and visitor consent is optional. After initial setup, counts appear automatically; future runs rebuild the site with current cumulative data. Data might differ from GA4 live reports because the API uses processed full days and may apply privacy thresholds.
+**Note:** The first public snapshot may take 24–48 hours to show processed views even if Realtime is already reporting users. A scheduled sync deliberately preserves a previous verified snapshot if the Data API returns no activity, and does not publish a misleading zero. When processed data appears, the first public snapshot may contain only a handful of views because the blog and analytics property are new and visitor consent is optional. After initial setup, counts appear automatically; future runs rebuild the site with current cumulative data. Data might differ from GA4 live reports because the API uses processed full days and may apply privacy thresholds.

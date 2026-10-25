@@ -25,6 +25,6 @@ const countries=ready ? [...readership.countries].filter(c=>c.views>0).sort((a,b
     </section>
   </div>
 ) : (
-  <div class="readership-pending-note">The public dashboard is installed, but its first verified Google Analytics snapshot has not yet been connected. Country-level totals and article view counts will appear after setup. No sample numbers are presented as real readership.</div>
+  <div class="readership-pending-note">The secure GA4 connection is working. Google has not yet finished processing the initial daily visit data. When verified aggregated results become available, article views and country totals will appear here automatically. No test values are presented as actual readership.</div>
 )}
 </BaseLayout>
