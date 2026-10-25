@@ -16,7 +16,7 @@ const countries=ready ? [...readership.countries].filter(c=>c.views>0).sort((a,b
 {ready ? (
   <div class="readership-lists">
     <section aria-labelledby="reader-essay-list"><h2 id="reader-essay-list">Most-read essays</h2>
-      <ol>{sorted.map(p=><li><a href={`${root}${p.path.replace(/^\//,'')}`}>{lookup.get(p.path)?.title}</a><span>{p.views.toLocaleString('en-US')} views</span></li>)}</ol>
+      <ol>{sorted.map(p=><li><a href={p.path}>{lookup.get(p.path)?.title}</a><span>{p.views.toLocaleString('en-US')} views</span></li>)}</ol>
       {sorted.length===0 && <p>No recorded essay views yet.</p>}
     </section>
     <section aria-labelledby="reader-country-list"><h2 id="reader-country-list">Readership by country</h2>
