@@ -1,0 +1,92 @@
+---
+const measurementId = 'G-ZS9BVFX6K5';
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<div id="analytics-consent-banner" class="analytics-consent-banner" role="region" aria-label="Analytics privacy choices" hidden>
+  <div class="analytics-consent-text">
+    <strong>Optional website analytics</strong>
+    <p>With your permission, we use Google Analytics to understand article readership and approximate geographic reach. No analytics tag loads until you agree. <a href={`${root}/privacy/`}>Privacy details</a>.</p>
+  </div>
+  <div class="analytics-consent-actions">
+    <button type="button" class="analytics-consent-allow" data-analytics-choice="yes">Allow analytics</button>
+    <button type="button" class="analytics-consent-decline" data-analytics-choice="no">No thanks</button>
+  </div>
+</div>
+<script is:inline data-ga-measurement-id={measurementId}>
+(function () {
+  const id = document.currentScript && document.currentScript.getAttribute('data-ga-measurement-id');
+  const banner = document.getElementById('analytics-consent-banner');
+  if (!id || !/^G-[A-Z0-9]+$/.test(id) || !banner) return;
+  const key = 'e2d-analytics-consent-v1';
+  let started = false;
+  let saved = null;
+  try { saved = window.localStorage.getItem(key); } catch (_) {}
+  function save(value) {
+    try { window.localStorage.setItem(key, value); } catch (_) {}
+  }
+  function showBanner() { banner.hidden = false; }
+  function hideBanner() { banner.hidden = true; }
+  function startAnalytics() {
+    if (started) return;
+    started = true;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    // Google consent mode v2: analytics only, no advertising consent.
+    window.gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
+    window.gtag('consent', 'update', {
+      analytics_storage: 'granted',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
+    window.gtag('js', new Date());
+    window.gtag('config', id, {
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false
+    });
+    const tag = document.createElement('script');
+    tag.async = true;
+    tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(id);
+    document.head.appendChild(tag);
+  }
+  function clearAnalyticsCookies() {
+    const cookieNames = document.cookie.split(';').map(function (s) { return s.trim().split('=')[0]; });
+    cookieNames.forEach(function (name) {
+      if (!/^(_ga(?:_|$)|_gid$|_gat(?:_|$))/.test(name)) return;
+      document.cookie = name + '=; Max-Age=0; path=/; SameSite=Lax';
+      document.cookie = name + '=; Max-Age=0; path=/; domain=.evidencetodecision.org; SameSite=Lax';
+    });
+  }
+  const allow = banner.querySelector('[data-analytics-choice="yes"]');
+  const decline = banner.querySelector('[data-analytics-choice="no"]');
+  allow.addEventListener('click', function () {
+    save('yes');
+    hideBanner();
+    startAnalytics();
+  });
+  decline.addEventListener('click', function () {
+    save('no');
+    hideBanner();
+    clearAnalyticsCookies();
+    if (started) {
+      if (window.gtag) window.gtag('consent', 'update', { analytics_storage: 'denied' });
+      window.location.reload();
+    }
+  });
+  // Privacy/footers can reopen the preference panel at any time.
+  document.addEventListener('click', function (event) {
+    const target = event.target;
+    if (target && target.closest && target.closest('[data-open-analytics-settings]')) {
+      showBanner();
+      allow.focus();
+    }
+  });
+  if (saved === 'yes') startAnalytics();
+  else if (saved !== 'no') showBanner();
+})();
+</script>

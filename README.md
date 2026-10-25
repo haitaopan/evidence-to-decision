@@ -41,3 +41,11 @@ Hyvor Talk is integrated below every essay and loads only when the public `HYVOR
 - The `/subscribe/` page links to RSS now. Until follow.it is configured, the email section clearly says it is not available and **collects no email addresses**.
 - To activate the email link, follow the verified setup steps in `SUBSCRIPTIONS_SETUP.md`. Configure the public GitHub Actions variable `FOLLOWIT_SUBSCRIBE_URL` with the real follow.it subscribe URL after testing and consent/unsubscribe review.
 - The About page and footer link to the publicly accessible [St. Jude Pan Group page](https://www.stjude.org/research/labs/pan-lab.html) for institutional context, without placing an institutional affiliation in the article byline or implying that this is an official St. Jude site.
+
+## Readership analytics (Google Analytics 4)
+- Measurement ID: `G-ZS9BVFX6K5` (public website identifier, not an account password).
+- The shared site layout includes `src/components/AnalyticsConsent.astro`; the Google tag is added only after the visitor opts in to optional analytics. Rejection or lack of consent does not load the Google tag.
+- Consent preferences are stored locally in the visitor's browser. Readers can change their choice via **Cookie settings** or **Privacy** in the footer.
+- Page views are recorded by Google Analytics automatically for each page of the static Astro site after consent, including every published essay, the home page, and archive. Approximate country, region, and city summaries are available through GA4 reports.
+- Site owner can verify collection at https://analytics.google.com/ in **Reports → Realtime**, by opening the blog, selecting **Allow analytics**, and visiting an essay. Some browsers block analytics; GA may take time to surface data.
+- For trust and privacy, the implementation disables Google advertising signals. Do not claim that GA4 uniquely identifies every reader or reconstructs historical visits before the tag was installed.

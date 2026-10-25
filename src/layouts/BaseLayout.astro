@@ -1,6 +1,7 @@
 ---
 import 'katex/dist/katex.min.css';
 import '../styles/global.css';
+import AnalyticsConsent from '../components/AnalyticsConsent.astro';
 const {title='Evidence to Decision',description='Clinical trials, evidence, and the decisions between them.'}=Astro.props;
 const base=import.meta.env.BASE_URL.replace(/\/$/,'');
 const path=(p:string)=>`${base}${p}`;
@@ -21,5 +22,5 @@ const canonical=new URL(Astro.url.pathname,Astro.site||Astro.url.origin).toStrin
 <nav aria-label="Primary navigation"><a href={path('/')}>Home</a><a href={path('/essays/')}>Archive</a><a href={path('/about/')}>About</a><a href={path('/subscribe/')}>Subscribe</a></nav>
 </header><main id="content"><slot /></main>
 <footer><div>© {new Date().getFullYear()} Haitao Pan, PhD · Please credit the author and link to the original article when sharing or republishing.<div>Views are personal and do not necessarily represent those of my employer or collaborators.</div></div>
-<div class="footer-links"><a href={path('/subscribe/')}>Subscribe</a><a href={path('/rss.xml')}>RSS</a><a href="https://www.stjude.org/research/labs/pan-lab.html" target="_blank" rel="noopener noreferrer">Institutional Profile</a><a href="https://orcid.org/0000-0003-4457-7349">ORCID</a></div></footer>
-</div></body></html>
+<div class="footer-links"><a href={path('/privacy/')}>Privacy</a><button type="button" class="analytics-settings-link" data-open-analytics-settings>Cookie settings</button><a href={path('/subscribe/')}>Subscribe</a><a href={path('/rss.xml')}>RSS</a><a href="https://www.stjude.org/research/labs/pan-lab.html" target="_blank" rel="noopener noreferrer">Institutional Profile</a><a href="https://orcid.org/0000-0003-4457-7349">ORCID</a></div></footer>
+</div><AnalyticsConsent /></body></html>
