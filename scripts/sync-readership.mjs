@@ -5,6 +5,18 @@
  */
 import {createPrivateKey, sign} from 'node:crypto';
 import {writeFile, mkdir} from 'node:fs/promises';
+const START_DATE='2026-10-24';
+const dateParts=Object.fromEntries(new Intl.DateTimeFormat('en-US', {
+  year:'numeric', month:'2-digit', day:'2-digit', timeZone:'America/Chicago'
+}).formatToParts(new Date()).map(part=>[part.type,part.value]));
+const chicagoDay=`${dateParts.year}-${dateParts.month}-${dateParts.day}`;
+// On the launch date, include today's (possibly provisional) data instead of
+// querying a backwards range. Thereafter export finalized prior days only.
+const includeLaunchDay=chicagoDay<=START_DATE;
+const queryEndDate=includeLaunchDay?'today':'yesterday';
+const lastReportDay=new Date(chicagoDay+'T12:00:00Z');
+if(!includeLaunchDay) lastReportDay.setUTCDate(lastReportDay.getUTCDate()-1);
+const through=lastReportDay.toISOString().slice(0,10);
 const ID = process.env.GA4_PROPERTY_ID;
 const secret = process.env.GA4_SERVICE_ACCOUNT_JSON;
 if (!/^\d{5,20}$/.test(ID || '')) throw Error('Set a valid numeric GA4_PROPERTY_ID in the readership-sync workflow (not the G- measurement ID).');
@@ -34,7 +46,7 @@ const accessToken=tokenJson.access_token;
 if (!accessToken) throw Error('Google returned no access token.');
 async function report(dimensions, metrics) {
  const request={
-   dateRanges:[{startDate:'2026-10-24',endDate:'yesterday'}],
+   dateRanges:[{startDate:START_DATE,endDate:queryEndDate}],
    dimensions: dimensions.map(name=>({name})),
    metrics: metrics.map(name=>({name})),
    limit:'100000'
@@ -73,11 +85,6 @@ const countries=byCountry.map(r=>({
  views:cleanInt(r.metricValues?.[0]?.value),
  activeUsers:cleanInt(r.metricValues?.[1]?.value)
 })).filter(r=>/^[A-Z]{2}$/.test(r.code)&&r.views>0).sort((a,b)=>b.views-a.views);
-// Compute property-local yesterday. Cron runs at 11:17 UTC, away from midnight US Central.
-const chicagoDay=new Intl.DateTimeFormat('en-CA',{year:'numeric',month:'2-digit',day:'2-digit',timeZone:'America/Chicago'}).format(new Date());
-const yesterday=new Date(chicagoDay+'T12:00:00Z');
-yesterday.setUTCDate(yesterday.getUTCDate()-1);
-const through=yesterday.toISOString().slice(0,10);
 const output={
  status:'ready',
  source:'Google Analytics 4',

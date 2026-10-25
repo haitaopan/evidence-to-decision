@@ -1,5 +1,12 @@
 name: Sync Public Readership
 on:
+  # A change to this sync implementation triggers a one-time run; the daily
+  # schedule continues to refresh totals without manual action.
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/readership-sync.yml
+      - scripts/sync-readership.mjs
   schedule:
     - cron: '17 11 * * *'
   workflow_dispatch:
