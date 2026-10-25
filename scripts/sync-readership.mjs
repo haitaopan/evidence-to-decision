@@ -7,7 +7,7 @@ import {createPrivateKey, sign} from 'node:crypto';
 import {writeFile, mkdir} from 'node:fs/promises';
 const ID = process.env.GA4_PROPERTY_ID;
 const secret = process.env.GA4_SERVICE_ACCOUNT_JSON;
-if (!/^\d{5,20}$/.test(ID || '')) throw Error('Set the numeric GA4_PROPERTY_ID GitHub Actions variable (not the G- measurement ID).');
+if (!/^\d{5,20}$/.test(ID || '')) throw Error('Set a valid numeric GA4_PROPERTY_ID in the readership-sync workflow (not the G- measurement ID).');
 if (!secret) throw Error('Set the GA4_SERVICE_ACCOUNT_JSON GitHub Actions secret (read-only service account).');
 let serviceAccount;
 try { serviceAccount = JSON.parse(secret); } catch {throw Error('GA4_SERVICE_ACCOUNT_JSON must be valid JSON.');}

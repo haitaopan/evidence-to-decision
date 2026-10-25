@@ -12,22 +12,38 @@ concurrency:
   cancel-in-progress: false
 jobs:
   build:
-    if: ${{ vars.GA4_PROPERTY_ID != '' }}
     runs-on: ubuntu-latest
+    outputs:
+      configured: ${{ steps.check.outputs.configured }}
     env:
-      GA4_PROPERTY_ID: ${{ vars.GA4_PROPERTY_ID }}
+      # Public, numeric GA4 Property ID; not a secret or Google tag.
+      GA4_PROPERTY_ID: '560666026'
       GA4_SERVICE_ACCOUNT_JSON: ${{ secrets.GA4_SERVICE_ACCOUNT_JSON }}
       PUBLIC_HYVOR_TALK_WEBSITE_ID: ${{ vars.HYVOR_TALK_WEBSITE_ID }}
       PUBLIC_FOLLOWIT_SUBSCRIBE_URL: ${{ vars.FOLLOWIT_SUBSCRIBE_URL }}
     steps:
+      - name: Check private read-only credentials
+        id: check
+        run: |
+          if [ -n "$GA4_SERVICE_ACCOUNT_JSON" ]; then
+            echo 'configured=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'configured=false' >> "$GITHUB_OUTPUT"
+            echo 'No GA4 service-account key configured; dashboard remains pending.'
+          fi
       - uses: actions/checkout@v4
+        if: ${{ steps.check.outputs.configured == 'true' }}
       - uses: actions/setup-node@v4
+        if: ${{ steps.check.outputs.configured == 'true' }}
         with:
           node-version: '22'
-      - run: npm install --no-audit --no-fund
+      - if: ${{ steps.check.outputs.configured == 'true' }}
+        run: npm install --no-audit --no-fund
       - name: Retrieve aggregate GA4 readings
+        if: ${{ steps.check.outputs.configured == 'true' }}
         run: node scripts/sync-readership.mjs
       - name: Commit public snapshot
+        if: ${{ steps.check.outputs.configured == 'true' }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -37,8 +53,10 @@ jobs:
             git push
           fi
       - uses: withastro/action@v4
+        if: ${{ steps.check.outputs.configured == 'true' }}
   deploy:
     needs: build
+    if: ${{ needs.build.outputs.configured == 'true' }}
     runs-on: ubuntu-latest
     environment:
       name: github-pages

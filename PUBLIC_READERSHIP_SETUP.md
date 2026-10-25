@@ -15,15 +15,16 @@ The public global-readership feature is **implemented but intentionally shows �
 
 ## One-time owner setup (do not share secrets in a chat or public repo)
 
-**Step 1: Locate numeric GA4 Property ID.** In Google Analytics → Admin → Property details find numeric `Property ID`. This is not the measurement ID `G-ZS9BVFX6K5`.
+The workflow checks for a configured GitHub Actions secret before attempting any sync. Without it, the public dashboard stays in its safe pending state and the scheduled job skips data retrieval.
+
+**Step 1: GA4 Property ID — DONE.** The publicly shareable numeric Property ID is already configured in the scheduled workflow as `560666026`. The site's tag ID is separately `G-ZS9BVFX6K5`. You do not need to create a GitHub variable for this number.
 
 **Step 2: Create a Google Cloud service account.** At https://console.cloud.google.com/ select or create a small project and enable the **Google Analytics Data API**. Go to IAM & Admin → Service Accounts → Create Service Account (e.g. `e2d-readership`). Under its Keys, generate a JSON key. Download it securely and do **not** email, paste into chat, or commit it to GitHub.
 
 **Step 3: Give it only GA4 Viewer access.** Copy the service account's email (usually ending in `.iam.gserviceaccount.com`). In Google Analytics → Admin → Property access management → Add users, enter this service account email with **Viewer**, property-level only. Do not grant Editor or Administrator privileges.
 
 **Step 4: Save credentials securely in GitHub.** Go to repository Settings → Secrets and variables → Actions:
-- Under **Variables** create `GA4_PROPERTY_ID` containing the numeric GA4 Property ID.
-- Under **Secrets** create `GA4_SERVICE_ACCOUNT_JSON` containing the entire JSON service account key as a **repository secret**, never in variables or source code.
+- Under **Secrets** create `GA4_SERVICE_ACCOUNT_JSON` containing the entire JSON service account key as a **repository secret**, never in variables or source code. The property ID `560666026` is already configured in the workflow, so no separate GA4 property variable is required.
 
 **Step 5: Run the initial data sync.** GitHub Actions → **Sync Public Readership** → Run workflow → main. Confirm workflow status Success and visit https://evidencetodecision.org/readership/.
 
