@@ -1,10 +1,33 @@
 {
-  "status": "pending",
+  "status": "ready",
   "source": "Google Analytics 4",
   "since": "2026-10-24",
-  "through": null,
-  "updatedAt": null,
-  "totals": null,
-  "pages": [],
-  "countries": []
+  "through": "2026-10-24",
+  "updatedAt": "2026-10-25T14:57:05.365Z",
+  "totals": {
+    "views": 17,
+    "activeUsers": 1
+  },
+  "pages": [
+    {
+      "path": "/essays/a-promising-signal-is-not-a-development-plan/",
+      "views": 1
+    },
+    {
+      "path": "/essays/before-we-borrow-can-the-evidence-be-repaired/",
+      "views": 1
+    },
+    {
+      "path": "/essays/when-not-yet-becomes-no/",
+      "views": 1
+    }
+  ],
+  "countries": [
+    {
+      "code": "US",
+      "name": "United States",
+      "views": 17,
+      "activeUsers": 1
+    }
+  ]
 }
