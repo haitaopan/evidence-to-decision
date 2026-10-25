@@ -1,16 +1,16 @@
 # Evidence to Decision — Free Waline guest comments
 
-**Status (2026-10-24):** Astro integration, protected Vercel Waline server, Neon tables, first administrator account, and server-side `COMMENT_AUDIT=true` are configured and verified. **Public comments are not yet live.** The remaining owner step is to create a Gmail app password and save it **directly** in Vercel as `SMTP_PASS`; then redeploy, test email and comment moderation, relax protection for the production API, and set `WALINE_SERVER_URL` in GitHub Actions Variables.
+**Status (2026-10-24):** The Waline server is built and running on `https://e2d-comments.vercel.app`. The administrator account is verified, `COMMENT_AUDIT=true` is confirmed, Neon is initialized, the Gmail SMTP app password is set as a sensitive Vercel Production environment variable, and the service has been redeployed successfully. Vercel's production endpoint is public; Preview deployments remain behind Vercel Authentication. The Astro component has been activated on every essay (GitHub Pages deployment succeeded). **Still pending end-to-end verification:** a guest submits a test comment, it lands in Waiting rather than public view, a moderator notification arrives at Gmail, and an administrator can approve/reply. Do not claim these tests passed before observing them.
 
 ## Current mail setup (one remaining private secret)
 
 Waline administrator role confirmed in Neon (the first registered user is `Haitao Pan, PhD`). Production Waline `/ui/register` returned HTTP 200 after fixing the ESM/Node runtime issue.
 
-The existing administrator Gmail address has been set in Vercel (encrypted) as `AUTHOR_EMAIL`, `SMTP_USER`, and `SENDER_EMAIL`. `SMTP_HOST=smtp.gmail.com`, `SMTP_PORT=465`, `SMTP_SECURE=true`, `SENDER_NAME=Evidence to Decision`, and English notification subjects are also configured. **The actual `SMTP_PASS` app password is not set**, so email notifications are not active yet.
+The existing administrator Gmail address has been set in Vercel (encrypted) as `AUTHOR_EMAIL`, `SMTP_USER`, and `SENDER_EMAIL`. `SMTP_HOST=smtp.gmail.com`, `SMTP_PORT=465`, `SMTP_SECURE=true`, `SENDER_NAME=Evidence to Decision`, and English notification subjects are also configured. **`SMTP_PASS` now exists in Vercel as a sensitive Production environment variable, and production has been redeployed. Email *delivery* has not yet been confirmed by a test comment.**
 
-Owner step: https://myaccount.google.com/apppasswords → create an app password for `Evidence to Decision Waline` (2-Step Verification required). On Vercel project `e2d-comments` → Settings → Environment Variables, create `SMTP_PASS` as an encrypted/sensitive **Production** environment variable with that app password. **Never send it to ChatGPT, put it in GitHub code, or screenshot the value.** This app password is different from the Google account's ordinary password. If Google doesn't offer app passwords, choose a separate mail provider instead of weakening account security.
+Owner step completed: Gmail app password created and safely stored as Vercel Production `SMTP_PASS`. Do not paste or share this password, including in Github source or chats.
 
-After `SMTP_PASS` is present, redeploy production to pick up the environment change, verify a new test comment goes into Waiting and triggers an email, then switch Vercel SSO protection from `all` to `preview` so readers can access the production comment API. Enable the public front-end only after end-to-end checks. Do not remove the existing admin account.
+Production was redeployed after adding `SMTP_PASS`, and public front-end was enabled by the owner-approved blog integration. Test guest moderation + Gmail notifications before declaring the complete reader interaction fully verified. If either test fails, promptly disable the public frontend while troubleshooting. Do not remove the existing admin account.
 
 ## Why Waline
 - Free open-source comments, without Disqus advertisements.

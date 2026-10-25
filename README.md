@@ -33,7 +33,7 @@ See `EDITORIAL_GUIDE.md` and `PUBLICATION_SAFETY.md` before posting. No patient-
 
 ## Comments (Waline, pending activation)
 
-The blog has a Waline comment component on **every essay**, but it remains hidden unless the public GitHub Actions variable `WALINE_SERVER_URL` is set to a verified HTTPS Waline server URL. The configuration targets ad-free guest comments, a required name, optional non-public email, administrator approval before publication, and notification emails. A separate free-plan Vercel backend and Neon database are needed; the backend must be initialized and tested before setting the variable. See [WALINE_SETUP.md](WALINE_SETUP.md). The older [HYVOR_TALK_SETUP.md](HYVOR_TALK_SETUP.md) is retained only for historical reference; its paid integration is not active.
+The blog now has an **active** Waline comment component on every published essay, using the verified public HTTPS backend `https://e2d-comments.vercel.app` as the built-in default. The optional GitHub Actions variable `WALINE_SERVER_URL` can override this URL if the backend moves. The Vercel Waline backend and Neon Postgres database are already provisioned. The registered administrator is Haitao Pan, PhD. `COMMENT_AUDIT=true` is confirmed, and SMTP settings including `SMTP_PASS` are configured in Vercel Production. **The first end-to-end test comment, moderator email delivery and owner reply still require verification.** See [WALINE_SETUP.md](WALINE_SETUP.md). The older [HYVOR_TALK_SETUP.md](HYVOR_TALK_SETUP.md) is retained only for historical reference; its paid integration is not active.
 
 ## Subscriptions and institutional profile
 
