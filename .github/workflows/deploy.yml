@@ -14,9 +14,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      # A public, non-secret Website ID set under Settings → Secrets and variables → Actions → Variables.
-      # Without it, essay pages build without any comments embed.
-      PUBLIC_HYVOR_TALK_WEBSITE_ID: ${{ vars.HYVOR_TALK_WEBSITE_ID }}
+      # Public HTTPS URL of the Waline backend. Set only after Vercel + Neon + moderation + mail tests.
+      # Missing variable safely leaves comments hidden.
+      PUBLIC_WALINE_SERVER_URL: ${{ vars.WALINE_SERVER_URL }}
       # Set only after confirming the legitimate follow.it subscription URL.
       PUBLIC_FOLLOWIT_SUBSCRIBE_URL: ${{ vars.FOLLOWIT_SUBSCRIBE_URL }}
     steps:

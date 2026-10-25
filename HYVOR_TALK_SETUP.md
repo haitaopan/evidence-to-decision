@@ -1,3 +1,5 @@
+> **SUPERSEDED — DO NOT FOLLOW FOR NEW COMMENTS.** The blog has selected the no-cost, ad-free Waline guest-comments pathway. Follow [WALINE_SETUP.md](WALINE_SETUP.md). This document describes an earlier, deliberately inactive commercial-provider option and is retained for historical context.
+
 # Hyvor Talk setup for Evidence to Decision
 
 The blog's essay template includes the Hyvor Talk comments integration, but **it remains hidden until a Hyvor Website ID is configured**. This is deliberate: readers must not see a broken or unmoderated comment form.

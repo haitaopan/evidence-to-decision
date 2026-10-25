@@ -4,21 +4,64 @@ interface Props {
   pageTitle: string;
   pageUrl: string;
 }
-const { pageId, pageTitle, pageUrl } = Astro.props;
-const websiteId = (import.meta.env.PUBLIC_HYVOR_TALK_WEBSITE_ID || '').trim();
+const { pageId } = Astro.props;
+const raw = (import.meta.env.PUBLIC_WALINE_SERVER_URL || '').trim();
+let serverURL: string | null = null;
+try {
+  const url = new URL(raw);
+  if (url.protocol === 'https:' && !url.username && !url.password && !url.search && !url.hash) {
+    serverURL = url.origin;
+  }
+} catch { /* Do not render an unconfigured comment widget. */ }
+// Keep a stable, per-essay discussion even if the site's domain changes.
+const commentPath = `/essays/${pageId}/`;
 ---
-{websiteId && (
-  <section class="essay-comments" id="comments" aria-labelledby="comments-heading">
+{serverURL && (
+  <section class="essay-comments" id="comments" aria-labelledby="comments-heading" data-waline-comments
+    data-waline-server={serverURL} data-waline-path={commentPath}>
     <h2 id="comments-heading">Comments</h2>
-    <p class="comments-intro">Join the discussion without creating an account. Your name is required; your email is optional and is not shown publicly. If supplied, the site moderator can see it, and Hyvor Talk can use it for reply notifications.</p>
-    <p class="comments-policy">Comments are subject to review before publication. Please do not share patient-identifiable details or confidential study information.</p>
-    <hyvor-talk-comments
-      website-id={websiteId}
-      page-id={`essay:${pageId}`}
-      page-url={pageUrl}
-      page-title={pageTitle}
-      loading="lazy"
-    ></hyvor-talk-comments>
-    <script is:inline async type="module" src="https://talk.hyvor.com/embed/embed.js"></script>
+    <p class="comments-intro">Join the discussion without signing in. A name is required; email is optional and will not appear publicly. If supplied, it may be used to notify you of a reply.</p>
+    <p class="comments-policy">Comments are reviewed before publication. Please do not post patient-identifiable information or confidential study details. <a href="/privacy/">Privacy details</a>.</p>
+    <div class="waline-comment-root" aria-live="polite"></div>
+    <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
+    <script is:inline type="module">
+      const containers = document.querySelectorAll('[data-waline-comments]');
+      const start = async (container) => {
+        if (container.dataset.initialized) return;
+        container.dataset.initialized = 'true';
+        const element = container.querySelector('.waline-comment-root');
+        const serverURL = container.dataset.walineServer;
+        const path = container.dataset.walinePath;
+        try {
+          const { init } = await import('https://unpkg.com/@waline/client@v3/dist/waline.js');
+          init({
+            el: element,
+            serverURL,
+            path,
+            lang: 'en',
+            login: 'disable',
+            meta: ['nick', 'mail'],
+            requiredMeta: ['nick'],
+            pageview: false,
+            comment: true
+          });
+        } catch (error) {
+          element.textContent = 'Comments are temporarily unavailable. Please try again later.';
+        }
+      };
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              start(entry.target);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: '350px' });
+        containers.forEach(node => observer.observe(node));
+      } else {
+        containers.forEach(node => start(node));
+      }
+    </script>
   </section>
 )}

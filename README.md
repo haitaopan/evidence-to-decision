@@ -31,9 +31,9 @@ The `.github/workflows/deploy.yml` workflow is prepared for GitHub Pages on push
 
 See `EDITORIAL_GUIDE.md` and `PUBLICATION_SAFETY.md` before posting. No patient-level, confidential study, DSMB, internal protocol, or collaborator information may be committed, whether or not the repository is private.
 
-## Comments (Hyvor Talk)
+## Comments (Waline, pending activation)
 
-Hyvor Talk is integrated below every essay and loads only when the public `HYVOR_TALK_WEBSITE_ID` GitHub Actions variable is set. Guests may comment with a required name and optional email (not shown publicly, but visible to moderators). Configure site-wide pre-moderation and moderator email notifications **before** enabling comments. See [HYVOR_TALK_SETUP.md](HYVOR_TALK_SETUP.md) for signup, pricing, setup, and verification.
+The blog has a Waline comment component on **every essay**, but it remains hidden unless the public GitHub Actions variable `WALINE_SERVER_URL` is set to a verified HTTPS Waline server URL. The configuration targets ad-free guest comments, a required name, optional non-public email, administrator approval before publication, and notification emails. A separate free-plan Vercel backend and Neon database are needed; the backend must be initialized and tested before setting the variable. See [WALINE_SETUP.md](WALINE_SETUP.md). The older [HYVOR_TALK_SETUP.md](HYVOR_TALK_SETUP.md) is retained only for historical reference; its paid integration is not active.
 
 ## Subscriptions and institutional profile
 
