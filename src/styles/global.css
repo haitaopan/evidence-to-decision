@@ -14,3 +14,13 @@
 .comments-intro,.comments-policy{font:14px/1.75 var(--sans);color:var(--sub);margin:0 0 10px}
 .comments-policy{margin-bottom:26px}
 .essay-comments hyvor-talk-comments{display:block;min-height:130px}
+
+/* Lightweight subscribe page; no forms or third-party scripts until activation. */
+.subscribe-content{max-width:720px;font:15px/1.85 var(--sans);color:var(--sub);margin:35px 0 90px}
+.subscribe-content>p{font-size:17px;color:var(--ink);margin:0 0 32px}
+.subscribe-method{border-top:1px solid var(--line);padding:23px 0 28px}
+.subscribe-method h2{font-family:var(--serif);font-weight:500;font-size:27px;line-height:1.25;color:var(--ink);margin:0 0 9px}
+.subscribe-method p{margin:0 0 16px}
+.subscribe-action{color:var(--accent);font-size:13px;font-weight:700}
+.footer-links{flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:760px){.footer-links{justify-content:flex-start}}

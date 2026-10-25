@@ -18,8 +18,8 @@ const canonical=new URL(Astro.url.pathname,Astro.site||Astro.url.origin).toStrin
 <title>{title === 'Evidence to Decision' ? title+' | Haitao Pan, PhD' : title+' | Evidence to Decision'}</title>
 </head><body><a class="skip" href="#content">Skip to content</a><div class="site-shell">
 <header class="top"><a class="brand" href={path('/')} aria-label="Evidence to Decision home">Evidence to Decision</a>
-<nav aria-label="Primary navigation"><a href={path('/')}>Home</a><a href={path('/essays/')}>Archive</a><a href={path('/about/')}>About</a></nav>
+<nav aria-label="Primary navigation"><a href={path('/')}>Home</a><a href={path('/essays/')}>Archive</a><a href={path('/about/')}>About</a><a href={path('/subscribe/')}>Subscribe</a></nav>
 </header><main id="content"><slot /></main>
 <footer><div>© {new Date().getFullYear()} Haitao Pan, PhD · Please credit the author and link to the original article when sharing or republishing.<div>Views are personal and do not necessarily represent those of my employer or collaborators.</div></div>
-<div class="footer-links"><a href={path('/rss.xml')}>RSS</a><a href="https://orcid.org/0000-0003-4457-7349">ORCID</a></div></footer>
+<div class="footer-links"><a href={path('/subscribe/')}>Subscribe</a><a href={path('/rss.xml')}>RSS</a><a href="https://www.stjude.org/research/labs/pan-lab.html" target="_blank" rel="noopener noreferrer">Institutional Profile</a><a href="https://orcid.org/0000-0003-4457-7349">ORCID</a></div></footer>
 </div></body></html>

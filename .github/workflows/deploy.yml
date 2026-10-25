@@ -17,6 +17,8 @@ jobs:
       # A public, non-secret Website ID set under Settings → Secrets and variables → Actions → Variables.
       # Without it, essay pages build without any comments embed.
       PUBLIC_HYVOR_TALK_WEBSITE_ID: ${{ vars.HYVOR_TALK_WEBSITE_ID }}
+      # Set only after confirming the legitimate follow.it subscription URL.
+      PUBLIC_FOLLOWIT_SUBSCRIBE_URL: ${{ vars.FOLLOWIT_SUBSCRIBE_URL }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

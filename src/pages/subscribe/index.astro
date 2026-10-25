@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const rssUrl = new URL('rss.xml', Astro.site ?? Astro.url).toString();
+const configuredUrl = import.meta.env.PUBLIC_FOLLOWIT_SUBSCRIBE_URL;
+let emailUrl: string | null = null;
+if (configuredUrl) {
+  try {
+    const u = new URL(configuredUrl);
+    if (u.protocol === 'https:' && (u.hostname === 'follow.it' || u.hostname === 'www.follow.it')) {
+      emailUrl = u.href;
+    }
+  } catch {}
+}
+---
+<BaseLayout title="Subscribe" description="Follow new essays from Evidence to Decision by RSS, with email updates when available.">
+<div class="archive-intro"><h1>Subscribe</h1></div>
+<div class="about-content subscribe-content">
+  <p>Follow new essays on clinical trials, evidence, and the decisions between them.</p>
+  {emailUrl ? (
+    <section class="subscribe-method">
+      <h2>Email updates</h2>
+      <p>Receive a notification when a new essay is published. Subscription preferences and unsubscribe options are managed by follow.it.</p>
+      <a class="subscribe-action" href={emailUrl} target="_blank" rel="noopener noreferrer">Subscribe by email ↗</a>
+    </section>
+  ) : (
+    <section class="subscribe-method">
+      <h2>Email updates</h2>
+      <p>Email alerts are being set up. There is no email signup form yet, and no addresses are being collected on this site.</p>
+    </section>
+  )}
+  <section class="subscribe-method">
+    <h2>RSS feed</h2>
+    <p>Prefer a feed reader? Subscribe to the public RSS feed to see new essays as they appear.</p>
+    <a class="subscribe-action" href={`${import.meta.env.BASE_URL.replace(/\/$/,'')}/rss.xml`}>Open the RSS feed ↗</a>
+  </section>
+</div>
+</BaseLayout>

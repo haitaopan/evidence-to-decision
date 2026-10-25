@@ -5,7 +5,7 @@ A minimal Astro blog for scientific essays and reflections on evidence and clini
 ## Site design
 - The homepage lists posts in reverse chronological order, with a full publication date, title, and summary.
 - The right sidebar groups posts by six topics; mobile layouts move topics below the posts.
-- Navigation contains only **Home**, **Archive**, and **About**.
+- Navigation contains **Home**, **Archive**, **About**, and a minimal **Subscribe** link.
 - Content is in Markdown/MDX under `src/content/essays/`. The essay layout supplies a full publication date, author byline `Haitao Pan, PhD`, and a clear source/attribution notice.
 - Posts are published by setting `draft: false` in their frontmatter after a confidentiality review.
 - All posts are the author's personal views; no institution is listed in the byline.
@@ -34,3 +34,10 @@ See `EDITORIAL_GUIDE.md` and `PUBLICATION_SAFETY.md` before posting. No patient-
 ## Comments (Hyvor Talk)
 
 Hyvor Talk is integrated below every essay and loads only when the public `HYVOR_TALK_WEBSITE_ID` GitHub Actions variable is set. Guests may comment with a required name and optional email (not shown publicly, but visible to moderators). Configure site-wide pre-moderation and moderator email notifications **before** enabling comments. See [HYVOR_TALK_SETUP.md](HYVOR_TALK_SETUP.md) for signup, pricing, setup, and verification.
+
+## Subscriptions and institutional profile
+
+- RSS remains public at `/rss.xml`, generated from published essays only.
+- The `/subscribe/` page links to RSS now. Until follow.it is configured, the email section clearly says it is not available and **collects no email addresses**.
+- To activate the email link, follow the verified setup steps in `SUBSCRIPTIONS_SETUP.md`. Configure the public GitHub Actions variable `FOLLOWIT_SUBSCRIBE_URL` with the real follow.it subscribe URL after testing and consent/unsubscribe review.
+- The About page and footer link to the publicly accessible [St. Jude Pan Group page](https://www.stjude.org/research/labs/pan-lab.html) for institutional context, without placing an institutional affiliation in the article byline or implying that this is an official St. Jude site.
