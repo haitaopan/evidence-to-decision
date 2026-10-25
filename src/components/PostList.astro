@@ -1,13 +1,16 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import readership from '../data/readership.json';
 const {posts} = Astro.props as {posts: CollectionEntry<'essays'>[]};
 const root=import.meta.env.BASE_URL.replace(/\/$/,'');
 const date=(d:Date)=>d.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric',timeZone:'UTC'});
+const counts = new Map((readership.pages || []).map(p=>[p.path,p.views]));
+const ready = readership.status === 'ready';
 ---
 <div class="post-list">
   {posts.length === 0 ? <div class="empty-state"><p>No posts yet.</p></div> : posts.map(post => (
     <article class="post-item">
-      <div class="post-date">{date(post.data.pubDate)}</div>
+      <div class="post-date">{date(post.data.pubDate)}{ready && <span class="post-public-views"> · {(counts.get(`/essays/${post.id}/`) ?? 0).toLocaleString('en-US')} views</span>}</div>
       <h3><a href={`${root}/essays/${post.id}/`}>{post.data.title}</a></h3>
       <p class="post-summary">{post.data.description}</p>
     </article>

@@ -49,3 +49,7 @@ Hyvor Talk is integrated below every essay and loads only when the public `HYVOR
 - Page views are recorded by Google Analytics automatically for each page of the static Astro site after consent, including every published essay, the home page, and archive. Approximate country, region, and city summaries are available through GA4 reports.
 - Site owner can verify collection at https://analytics.google.com/ in **Reports → Realtime**, by opening the blog, selecting **Allow analytics**, and visiting an essay. Some browsers block analytics; GA may take time to surface data.
 - For trust and privacy, the implementation disables Google advertising signals. Do not claim that GA4 uniquely identifies every reader or reconstructs historical visits before the tag was installed.
+
+## Public readership map and article views
+
+A public readership dashboard is installed at `/readership/` with a linked homepage summary, world map, country-level counts, and per-article view totals. It reuses Google Analytics 4 read-only aggregates via a daily GitHub Actions sync, with **no extra hosted visitor tracking service**. The first snapshot is intentionally pending until the owner configures the GA4 numeric Property ID and read-only service account credentials. Instructions: [PUBLIC_READERSHIP_SETUP.md](PUBLIC_READERSHIP_SETUP.md).

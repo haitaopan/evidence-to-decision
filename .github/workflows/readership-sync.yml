@@ -1,0 +1,48 @@
+name: Sync Public Readership
+on:
+  schedule:
+    - cron: '17 11 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: readership-data-publish
+  cancel-in-progress: false
+jobs:
+  build:
+    if: ${{ vars.GA4_PROPERTY_ID != '' }}
+    runs-on: ubuntu-latest
+    env:
+      GA4_PROPERTY_ID: ${{ vars.GA4_PROPERTY_ID }}
+      GA4_SERVICE_ACCOUNT_JSON: ${{ secrets.GA4_SERVICE_ACCOUNT_JSON }}
+      PUBLIC_HYVOR_TALK_WEBSITE_ID: ${{ vars.HYVOR_TALK_WEBSITE_ID }}
+      PUBLIC_FOLLOWIT_SUBSCRIBE_URL: ${{ vars.FOLLOWIT_SUBSCRIBE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-audit --no-fund
+      - name: Retrieve aggregate GA4 readings
+        run: node scripts/sync-readership.mjs
+      - name: Commit public snapshot
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/readership.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Refresh public readership summary"
+            git push
+          fi
+      - uses: withastro/action@v4
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ReadershipPanel from '../../components/ReadershipPanel.astro';
+import readership from '../../data/readership.json';
+import { getCollection } from 'astro:content';
+const ready = readership.status === 'ready';
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
+const essays=await getCollection('essays',({data})=>!data.draft);
+const lookup = new Map(essays.map(e => [`/essays/${e.id}/`, { title:e.data.title, id:e.id }]));
+const sorted=ready ? [...readership.pages].filter(p=>lookup.has(p.path)).sort((a,b)=>b.views-a.views) : [];
+const countries=ready ? [...readership.countries].filter(c=>c.views>0).sort((a,b)=>b.views-a.views) : [];
+---
+<BaseLayout title="Global Readership" description="Public, aggregated readership statistics and worldwide readership map for Evidence to Decision.">
+<div class="archive-intro"><h1>Global Readership</h1><p>Public, aggregated readership statistics for Evidence to Decision.</p></div>
+<ReadershipPanel />
+{ready ? (
+  <div class="readership-lists">
+    <section aria-labelledby="reader-essay-list"><h2 id="reader-essay-list">Most-read essays</h2>
+      <ol>{sorted.map(p=><li><a href={`${root}${p.path.replace(/^\//,'')}`}>{lookup.get(p.path)?.title}</a><span>{p.views.toLocaleString('en-US')} views</span></li>)}</ol>
+      {sorted.length===0 && <p>No recorded essay views yet.</p>}
+    </section>
+    <section aria-labelledby="reader-country-list"><h2 id="reader-country-list">Readership by country</h2>
+      <ol>{countries.map(c=><li><span>{c.name}</span><span>{c.views.toLocaleString('en-US')} views</span></li>)}</ol>
+      {countries.length===0 && <p>No country-level data yet.</p>}
+    </section>
+  </div>
+) : (
+  <div class="readership-pending-note">The public dashboard is installed, but its first verified Google Analytics snapshot has not yet been connected. Country-level totals and article view counts will appear after setup. No sample numbers are presented as real readership.</div>
+)}
+</BaseLayout>

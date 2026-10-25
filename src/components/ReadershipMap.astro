@@ -1,0 +1,53 @@
+---
+import worldSvg from '../assets/world.svg?raw';
+import readership from '../data/readership.json';
+const ready = readership.status === 'ready';
+const countries = Array.isArray(readership.countries) ? readership.countries : [];
+const byCode = new Map(countries.map(c => [c.code.toLowerCase(), c]));
+const escapeText = (v) => String(v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+// The country map shows national aggregates, never visitor coordinates.
+const markup = worldSvg
+  .replace('<svg ', '<svg class="readership-world-svg" role="img" aria-label="World map of aggregated readership by country" ')
+  .replace(/<path id="([a-z]{2})" d="([^"]+)"\/>/g, (_match, code, shape) => {
+    const row = byCode.get(code);
+    const visits = row ? Number(row.views || 0) : 0;
+    const countryName = row ? row.name : code.toUpperCase();
+    return `<path id="${code}" class="${visits > 0 ? 'map-visited' : 'map-unvisited'}" d="${shape}"${visits > 0 ? ' tabindex="0"' : ''} data-code="${code}" data-views="${visits}"><title>${escapeText(countryName)}: ${visits.toLocaleString('en-US')} measured views</title></path>`;
+  });
+---
+<div class="reader-world-map" data-readership-map>
+  <div set:html={markup}></div>
+  {ready ? (
+    <p class="map-footnote">Shaded countries and dots show aggregated national readership, not individual visitor locations.</p>
+  ) : (
+    <p class="map-footnote">The world map is ready. Geographic data will appear after the read-only Google Analytics sync is connected.</p>
+  )}
+</div>
+<script>
+  function addMapDots() {
+    document.querySelectorAll('[data-readership-map] svg').forEach((svg) => {
+      if (svg.hasAttribute('data-markers-added')) return;
+      svg.setAttribute('data-markers-added', 'true');
+      const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      group.classList.add('readership-map-dots');
+      svg.append(group);
+      svg.querySelectorAll('path.map-visited').forEach((shape) => {
+        const bbox = shape.getBBox();
+        if (!Number.isFinite(bbox.width) || !bbox.width || !Number.isFinite(bbox.height) || !bbox.height) return;
+        const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        // Symbolic country marker at the shape bounding-box center, never at a reader location.
+        dot.setAttribute('cx', String(bbox.x + bbox.width/2));
+        dot.setAttribute('cy', String(bbox.y + bbox.height/2));
+        dot.setAttribute('r', '7');
+        dot.classList.add('reader-map-dot');
+        dot.setAttribute('aria-hidden', 'true');
+        const tip = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+        tip.textContent = shape.querySelector('title')?.textContent || '';
+        dot.append(tip);
+        group.append(dot);
+      });
+    });
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addMapDots, {once:true});
+  else addMapDots();
+</script>

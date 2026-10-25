@@ -1,0 +1,33 @@
+---
+import readership from '../data/readership.json';
+import ReadershipMap from './ReadershipMap.astro';
+const { compact = false } = Astro.props;
+const ready = readership.status === 'ready' && readership.totals !== null;
+const totalViews = ready ? Number(readership.totals.views || 0) : null;
+const users = ready ? Number(readership.totals.activeUsers || 0) : null;
+const places = ready ? readership.countries.filter(c => c.views > 0).length : null;
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
+const fmt = n => n == null ? '—' : n.toLocaleString('en-US');
+---
+<section class:list={['readership-panel', { 'readership-panel-compact': compact }]} aria-labelledby="global-readership-title">
+  <div class="readership-panel-heading">
+    <div>
+      <p class="readership-eyebrow">EVIDENCE TO DECISION</p>
+      <h2 id="global-readership-title">Global Readership</h2>
+      <p>Where these conversations are being read.</p>
+    </div>
+    {compact && <a href={`${root}/readership/`} class="readership-more">Explore readership →</a>}
+  </div>
+  <div class="reader-metrics">
+    <div><span>Measured page views</span><strong>{fmt(totalViews)}</strong></div>
+    <div><span>Measured active users</span><strong>{fmt(users)}</strong></div>
+    <div><span>Countries / regions</span><strong>{fmt(places)}</strong></div>
+  </div>
+  <ReadershipMap />
+  <p class="reader-source">
+    {ready ? `Based on consenting visits recorded since ${readership.since}, through ${readership.through}. Last refreshed ${readership.updatedAt?.slice(0,10)}.` :
+      'Awaiting the initial read-only GA4 data sync. No reader counts are being guessed or displayed as zero.'}
+    {' '}Counts are collected only when visitors allow analytics; figures may undercount total visits.
+  </p>
+  {!compact && <p class="reader-map-credit">World map © <a href="https://vectoratlas.menelabs.com/" target="_blank" rel="noopener noreferrer">VectorAtlas</a> / Natural Earth, CC BY 4.0.</p>}
+</section>
