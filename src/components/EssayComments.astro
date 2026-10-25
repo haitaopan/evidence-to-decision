@@ -1,0 +1,24 @@
+---
+interface Props {
+  pageId: string;
+  pageTitle: string;
+  pageUrl: string;
+}
+const { pageId, pageTitle, pageUrl } = Astro.props;
+const websiteId = (import.meta.env.PUBLIC_HYVOR_TALK_WEBSITE_ID || '').trim();
+---
+{websiteId && (
+  <section class="essay-comments" id="comments" aria-labelledby="comments-heading">
+    <h2 id="comments-heading">Comments</h2>
+    <p class="comments-intro">Join the discussion without creating an account. Your name is required; your email is optional and is not shown publicly. If supplied, the site moderator can see it, and Hyvor Talk can use it for reply notifications.</p>
+    <p class="comments-policy">Comments are subject to review before publication. Please do not share patient-identifiable details or confidential study information.</p>
+    <hyvor-talk-comments
+      website-id={websiteId}
+      page-id={`essay:${pageId}`}
+      page-url={pageUrl}
+      page-title={pageTitle}
+      loading="lazy"
+    ></hyvor-talk-comments>
+    <script is:inline async type="module" src="https://talk.hyvor.com/embed/embed.js"></script>
+  </section>
+)}

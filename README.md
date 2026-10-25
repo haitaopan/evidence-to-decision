@@ -30,3 +30,7 @@ The `.github/workflows/deploy.yml` workflow is prepared for GitHub Pages on push
 **Copyright/attribution:** Please credit Haitao Pan, PhD and link to the original article on *Evidence to Decision* when quoting, sharing, or republishing.
 
 See `EDITORIAL_GUIDE.md` and `PUBLICATION_SAFETY.md` before posting. No patient-level, confidential study, DSMB, internal protocol, or collaborator information may be committed, whether or not the repository is private.
+
+## Comments (Hyvor Talk)
+
+Hyvor Talk is integrated below every essay and loads only when the public `HYVOR_TALK_WEBSITE_ID` GitHub Actions variable is set. Guests may comment with a required name and optional email (not shown publicly, but visible to moderators). Configure site-wide pre-moderation and moderator email notifications **before** enabling comments. See [HYVOR_TALK_SETUP.md](HYVOR_TALK_SETUP.md) for signup, pricing, setup, and verification.

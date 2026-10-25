@@ -13,6 +13,10 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # A public, non-secret Website ID set under Settings → Secrets and variables → Actions → Variables.
+      # Without it, essay pages build without any comments embed.
+      PUBLIC_HYVOR_TALK_WEBSITE_ID: ${{ vars.HYVOR_TALK_WEBSITE_ID }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
