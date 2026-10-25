@@ -1,7 +1,21 @@
 # Email subscriptions — setup and release gate
 
-## Current status (2026-10-24)
-The site supports RSS at `https://evidencetodecision.org/rss.xml`. The blog also has a `/subscribe/` page. Email signups are **not** active until a publisher-controlled follow.it feed and working subscribe link are verified.
+## Current status (2026-10-25)
+The site supports RSS at `https://evidencetodecision.org/rss.xml`. The blog also has a `/subscribe/` page. The RSS generator has been reviewed and its channel title includes **Haitao Pan, PhD**. Email signups are **not** active until a publisher-controlled follow.it feed, valid subscribe link, and end-to-end confirmation have been verified.
+
+## Next necessary account-side step — feed creation
+
+The site owner has already used Sign in with Google on follow.it, but we have not verified an actual publisher feed under that account. There is no direct follow.it account connector available to this workflow.
+
+1. Open https://follow.it/publisher/create and sign in as the existing publisher.
+2. Select **From my website or RSS feed (automatically)**.
+3. Enter **https://evidencetodecision.org/rss.xml** (not another feed with a similar name).
+4. Follow the setup wizard, keeping the **Basic (free)** plan, with **Evidence to Decision | Haitao Pan, PhD** as the publisher label if editable.
+5. If the service asks to **claim / verify ownership**, provide its exact non-secret website verification snippet or HTML-file contents so the blog repository can be updated, then complete the claim process. Never provide passwords or OAuth tokens.
+6. Copy the actual subscribe-page URL or official form embed snippet from follow.it. Do **not** guess a slug.
+7. Configure the link in the GitHub Pages site, and independently test a real opt-in and unsubscribe.
+
+Important: The free follow.it Basic tier may show follow.it branding or promotions in delivered mail; an ad-free whitelabel email plan is a paid feature. There is no new advertising component on the Evidence to Decision webpages. Review this tradeoff before presenting the mail to readers as fully ad-free.
 
 ## Recommended lightweight service
 follow.it's current basic publisher plan supports RSS-to-email notifications, a free tier, and subscriber-managed notifications. Service features and pricing may change: see https://follow.it/features-and-pricing.
