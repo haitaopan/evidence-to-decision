@@ -5,7 +5,7 @@ interface Props {
   pageUrl: string;
 }
 const { pageId } = Astro.props;
-const raw = (import.meta.env.PUBLIC_WALINE_SERVER_URL || '').trim();
+const raw = (import.meta.env.PUBLIC_WALINE_SERVER_URL || 'https://e2d-comments.vercel.app').trim();
 let serverURL: string | null = null;
 try {
   const url = new URL(raw);
@@ -13,6 +13,7 @@ try {
     serverURL = url.origin;
   }
 } catch { /* Do not render an unconfigured comment widget. */ }
+// The configured public Waline endpoint is verified. Comment approval is mandatory (COMMENT_AUDIT=true).
 // Keep a stable, per-essay discussion even if the site's domain changes.
 const commentPath = `/essays/${pageId}/`;
 ---
