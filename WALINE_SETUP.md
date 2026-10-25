@@ -1,6 +1,16 @@
 # Evidence to Decision — Free Waline guest comments
 
-**Status:** Astro integration added; intentionally **not live** until Vercel/Neon, administrator moderation, and email notifications have been configured and tested.
+**Status (2026-10-24):** Astro integration, protected Vercel Waline server, Neon tables, first administrator account, and server-side `COMMENT_AUDIT=true` are configured and verified. **Public comments are not yet live.** The remaining owner step is to create a Gmail app password and save it **directly** in Vercel as `SMTP_PASS`; then redeploy, test email and comment moderation, relax protection for the production API, and set `WALINE_SERVER_URL` in GitHub Actions Variables.
+
+## Current mail setup (one remaining private secret)
+
+Waline administrator role confirmed in Neon (the first registered user is `Haitao Pan, PhD`). Production Waline `/ui/register` returned HTTP 200 after fixing the ESM/Node runtime issue.
+
+The existing administrator Gmail address has been set in Vercel (encrypted) as `AUTHOR_EMAIL`, `SMTP_USER`, and `SENDER_EMAIL`. `SMTP_HOST=smtp.gmail.com`, `SMTP_PORT=465`, `SMTP_SECURE=true`, `SENDER_NAME=Evidence to Decision`, and English notification subjects are also configured. **The actual `SMTP_PASS` app password is not set**, so email notifications are not active yet.
+
+Owner step: https://myaccount.google.com/apppasswords → create an app password for `Evidence to Decision Waline` (2-Step Verification required). On Vercel project `e2d-comments` → Settings → Environment Variables, create `SMTP_PASS` as an encrypted/sensitive **Production** environment variable with that app password. **Never send it to ChatGPT, put it in GitHub code, or screenshot the value.** This app password is different from the Google account's ordinary password. If Google doesn't offer app passwords, choose a separate mail provider instead of weakening account security.
+
+After `SMTP_PASS` is present, redeploy production to pick up the environment change, verify a new test comment goes into Waiting and triggers an email, then switch Vercel SSO protection from `all` to `preview` so readers can access the production comment API. Enable the public front-end only after end-to-end checks. Do not remove the existing admin account.
 
 ## Why Waline
 - Free open-source comments, without Disqus advertisements.
