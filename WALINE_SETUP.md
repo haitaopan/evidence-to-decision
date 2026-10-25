@@ -15,8 +15,8 @@ Production was redeployed after adding `SMTP_PASS`, and public front-end was ena
 ## Why Waline
 - Free open-source comments, without Disqus advertisements.
 - Visitors comment without login: `login: 'disable'`.
-- Require nickname only: `requiredMeta: ['nick']`; email is optional: `meta: ['nick','mail']`.
-- A visitor's email does not appear in the public thread; moderators and mail service may use the address provided.
+- Require both nickname and email: `requiredMeta: ['nick','mail']`, with `meta: ['nick','mail']`. The backend `preSave` hook also rejects absent or invalid-looking guest emails.
+- Email is required but not publicly displayed. Administrators and the mail service may use it. Required email is not inbox ownership verification; that would need a separate step.
 - Separate permanent discussion for each article: `/essays/<slug>/`.
 - Owner approves every message: server environment `COMMENT_AUDIT=true`.
 - Enable admin and reply email notifications with SMTP; never paste SMTP credentials into GitHub source or ChatGPT.
@@ -53,11 +53,11 @@ Once the moderation and email checks pass, go to GitHub repository **Settings â†
 The site's static Astro comments component is at `src/components/EssayComments.astro`. If the public backend URL is unset or invalid, **no Waline requests or comment widget** appear on the live site.
 
 ### Verification
-1. Guest can submit with a name and no email, without login.
+1. Guest can submit with a name and valid email without login; submitting with either field blank must fail.
 2. Message stays pending until administrator approves it.
 3. Moderator receives a notice via email.
 4. Approving makes it publicly visible on only that essay.
-5. Administrator can reply; supplied guest email, if any, remains private.
+5. Administrator can reply; the required guest email remains private to administrators and email delivery provider.
 6. A separate essay has a separate thread.
 7. No advertisements or unexpected third-party widgets appear.
 8. Articles, analytics, readability and mobile layouts remain intact.

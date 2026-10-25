@@ -21,7 +21,7 @@ const commentPath = `/essays/${pageId}/`;
   <section class="essay-comments" id="comments" aria-labelledby="comments-heading" data-waline-comments
     data-waline-server={serverURL} data-waline-path={commentPath}>
     <h2 id="comments-heading">Comments</h2>
-    <p class="comments-intro">Join the discussion without signing in. A name is required; email is optional and will not appear publicly. If supplied, it may be used to notify you of a reply.</p>
+    <p class="comments-intro">Join the discussion without signing in. Your name and a valid email address are both required. Your email address will not appear publicly; it is visible to the site administrator and may be used for reply notifications.</p>
     <p class="comments-policy">Comments are reviewed before publication. Please do not post patient-identifiable information or confidential study details. <a href="/privacy/">Privacy details</a>.</p>
     <div class="waline-comment-root" aria-live="polite"></div>
     <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
@@ -42,7 +42,7 @@ const commentPath = `/essays/${pageId}/`;
             lang: 'en',
             login: 'disable',
             meta: ['nick', 'mail'],
-            requiredMeta: ['nick'],
+            requiredMeta: ['nick', 'mail'],
             pageview: false,
             comment: true
           });
