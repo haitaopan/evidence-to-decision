@@ -39,7 +39,7 @@ The blog now has an **active** Waline comment component on every published essay
 
 - RSS remains public at `/rss.xml`, generated from published essays only.
 - The `/subscribe/` page now contains the official follow.it signup form supplied by the publisher, styled to match the blog; it POSTs subscriber email to follow.it directly, not to GitHub Pages.
-- RSS remains active at `/rss.xml`. Sign-up, confirmation, email delivery and unsubscribe are provided by follow.it; an owner-controlled end-to-end test is still needed to confirm delivery and feed association.
+- RSS remains active at `/rss.xml`. The site owner confirmed a successful follow.it email sign-up and confirmation for **Evidence to Decision | Haitao Pan, PhD** on 2026-10-25. Automatic notification of the next newly published essay remains to be observed; don't publish a synthetic essay just to force a test.
 - The public form POST action is embedded in `src/pages/subscribe/index.astro` so no GitHub Actions variable is needed for the form. The previous unused `FOLLOWIT_SUBSCRIBE_URL` variable does not control this form. See `SUBSCRIPTIONS_SETUP.md` for verification.
 - The About page and footer link to the publicly accessible [St. Jude Pan Group page](https://www.stjude.org/research/labs/pan-lab.html) for institutional context, without placing an institutional affiliation in the article byline or implying that this is an official St. Jude site.
 
@@ -53,4 +53,4 @@ The blog now has an **active** Waline comment component on every published essay
 
 ## Public readership map and article views
 
-A public readership dashboard is installed at `/readership/` with a linked homepage summary, world map, country-level counts, and per-article view totals. It reuses Google Analytics 4 read-only aggregates via a daily GitHub Actions sync, with **no extra hosted visitor tracking service**. The numeric GA4 Property ID `560666026` is configured; the first public snapshot remains pending until the owner supplies a read-only Google service account key as a GitHub Actions repository secret. Instructions: [PUBLIC_READERSHIP_SETUP.md](PUBLIC_READERSHIP_SETUP.md).
+A public readership dashboard is installed at `/readership/` with a linked homepage summary, world map, country-level counts, and per-article view totals. It reuses Google Analytics 4 read-only aggregates via a daily GitHub Actions sync, with **no extra hosted visitor tracking service**. The numeric GA4 Property ID `560666026` and read-only service-account secret are both configured. First real public GA4 snapshot is now verified: through 2026-10-24, **17 measured page views, 1 tracked GA4 user, United States 17 views**, and one view per published essay. The scheduled sync refreshes daily and labels the reporting cut-off; consent blockers may undercount visits. Instructions: [PUBLIC_READERSHIP_SETUP.md](PUBLIC_READERSHIP_SETUP.md).

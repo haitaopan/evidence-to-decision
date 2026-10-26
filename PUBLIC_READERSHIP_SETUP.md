@@ -1,6 +1,6 @@
 # Public Global Readership dashboard
 
-The public global-readership feature is deployed and the read-only GA4 service account has successfully authenticated. The initial Data API daily aggregate was empty even though the user's Realtime report had activity. The public site therefore **shows “—” until GA4 returns verified processed data**, rather than treating an empty report as zero visits. Never insert demo counters into the public website.
+**LIVE — verified 2026-10-25.** The public world map, per-article views, and global metrics are deployed. The read-only GA4 Data API has returned a real aggregate through 2026-10-24: **17 measured page views, 1 tracked user, and 17 views from the United States**. Each of the three published essays had one measured view at that cut-off. A successful 2026-10-25 rerun also confirmed `totalUsers: 1`. The site continues to show its last verified data with an explicit through-date between daily refreshes. Never insert demonstration counts as real data.
 
 - Homepage: the Global Readership section displays totals and a world map. Link to `/readership/`.
 - Article pages: byline shows measured cumulative views; the homepage article listing shows views per post.
@@ -15,18 +15,18 @@ The public global-readership feature is deployed and the read-only GA4 service a
 
 ## One-time owner setup (do not share secrets in a chat or public repo)
 
-The workflow checks for a configured GitHub Actions secret before attempting any sync. Without it, the public dashboard stays in its safe pending state and the scheduled job skips data retrieval.
+The GitHub Actions secret and property ID are now configured. The workflow checks the secret on each run; if removed or invalid, the refresh fails safely without exposing credentials. **No further account setup is required.** The steps below document the configuration already completed.
 
 **Step 1: GA4 Property ID — DONE.** The publicly shareable numeric Property ID is already configured in the scheduled workflow as `560666026`. The site's tag ID is separately `G-ZS9BVFX6K5`. You do not need to create a GitHub variable for this number.
 
-**Step 2: Create a Google Cloud service account.** At https://console.cloud.google.com/ select or create a small project and enable the **Google Analytics Data API**. Go to IAM & Admin → Service Accounts → Create Service Account (e.g. `e2d-readership`). Under its Keys, generate a JSON key. Download it securely and do **not** email, paste into chat, or commit it to GitHub.
+**Step 2: Google Cloud service account — DONE.** At https://console.cloud.google.com/ select or create a small project and enable the **Google Analytics Data API**. Go to IAM & Admin → Service Accounts → Create Service Account (e.g. `e2d-readership`). Under its Keys, generate a JSON key. Download it securely and do **not** email, paste into chat, or commit it to GitHub.
 
-**Step 3: Give it only GA4 Viewer access.** Copy the service account's email (usually ending in `.iam.gserviceaccount.com`). In Google Analytics → Admin → Property access management → Add users, enter this service account email with **Viewer**, property-level only. Do not grant Editor or Administrator privileges.
+**Step 3: GA4 Viewer access — DONE.** Copy the service account's email (usually ending in `.iam.gserviceaccount.com`). In Google Analytics → Admin → Property access management → Add users, enter this service account email with **Viewer**, property-level only. Do not grant Editor or Administrator privileges.
 
-**Step 4: Save credentials securely in GitHub.** Go to repository Settings → Secrets and variables → Actions:
+**Step 4: GitHub encrypted credentials — DONE.** Go to repository Settings → Secrets and variables → Actions:
 - Under **Secrets** create `GA4_SERVICE_ACCOUNT_JSON` containing the entire JSON service account key as a **repository secret**, never in variables or source code. The property ID `560666026` is already configured in the workflow, so no separate GA4 property variable is required.
 
-**Step 5: Run the initial data sync.** This workflow also runs automatically when its sync script or workflow definition changes. To rerun manually later: GitHub Actions → **Sync Public Readership** → Run workflow → main. Confirm workflow status Success and visit https://evidencetodecision.org/readership/.
+**Step 5: Run/read the verified data sync — DONE.** This workflow also runs automatically when its sync script or workflow definition changes. To rerun manually later: GitHub Actions → **Sync Public Readership** → Run workflow → main. Confirm workflow status Success and visit https://evidencetodecision.org/readership/.
 
 If the action fails, check the message for a missing property ID, Data API not enabled, or the service account lacking Viewer access. Do not share workflow logs that accidentally contain secrets. Once configured, updates run automatically every day and new essay URLs are picked up without any new analytics setup.
 

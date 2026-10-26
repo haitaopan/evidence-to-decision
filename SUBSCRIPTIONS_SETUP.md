@@ -1,9 +1,9 @@
 # Email subscriptions — setup and release gate
 
 ## Current status (2026-10-25)
-The RSS feed is live and its title includes **Haitao Pan, PhD**. The publisher supplied the official follow.it HTML form generated in the follow.it dashboard. Its public HTTPS subscription-form POST action is now installed as a native-styled HTML form at `/subscribe/`, so readers can enter an email address without third-party scripts. **End-to-end delivery is not yet verified:** the owner should test the signup and confirmation with an email they control, check that it subscribes specifically to Evidence to Decision, and later confirm a new approved RSS post triggers an email. Do not mark automated delivery verified until that test passes.
+The RSS feed is live and its title includes **Haitao Pan, PhD**. The publisher supplied the official follow.it HTML form generated in the follow.it dashboard. Its public HTTPS subscription-form POST action is now installed as a native-styled HTML form at `/subscribe/`, so readers can enter an email address without third-party scripts. **Sign-up and confirmation verified 2026-10-25:** the site owner submitted a test email, received an official follow.it confirmation message naming `Evidence to Decision | Haitao Pan, PhD`, clicked to confirm and reported the flow working. No automatic new-post email has yet been observed; check the next *genuinely new* published essay and its unsubscribe link before marking the entire delivery loop verified.
 
-## Next necessary account-side step — feed creation
+## Historical account-side setup — already completed
 
 The site owner has already used Sign in with Google on follow.it, but we have not verified an actual publisher feed under that account. There is no direct follow.it account connector available to this workflow.
 
@@ -52,3 +52,8 @@ The site's About page and footer link to https://www.stjude.org/research/labs/pa
 - **Test case 1**: open `https://evidencetodecision.org/subscribe/`, enter a controlled test email, click Subscribe, and verify which follow.it feed is offered and any confirmation email.
 - **Test case 2**: verify unsubscribe works via follow.it.
 - **Test case 3**: on the next *new* published article, check RSS includes it and the subscriber receives the expected notification. Do not publish a fake article just to test without editorial approval.
+
+## Actual subscriber acceptance
+- 2026-10-25: the publisher-provided follow.it form is embedded on `/subscribe/`.
+- 2026-10-25: owner received a confirmation mail from follow.it for the correctly named feed and confirmed subscription activation.
+- Remaining operational check: the next newly published essay is included in RSS and triggers follow.it email to the consenting test subscriber. Verify delivery and unsubscribe without publishing a dummy essay.
