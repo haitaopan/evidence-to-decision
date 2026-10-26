@@ -10,7 +10,7 @@ const ready = readership.status === 'ready';
 <div class="post-list">
   {posts.length === 0 ? <div class="empty-state"><p>No posts yet.</p></div> : posts.map(post => (
     <article class="post-item">
-      <div class="post-date">{date(post.data.pubDate)}{ready && <span class="post-public-views"> · {(counts.get(`/essays/${post.id}/`) ?? 0).toLocaleString('en-US')} views</span>}</div>
+      <div class="post-date">{date(post.data.pubDate)}{ready && counts.has(`/essays/${post.id}/`) && <span class="post-public-views" title={`Recorded through ${readership.through}`}> · {counts.get(`/essays/${post.id}/`).toLocaleString('en-US')} views</span>}</div>
       <h3><a href={`${root}/essays/${post.id}/`}>{post.data.title}</a></h3>
       <p class="post-summary">{post.data.description}</p>
     </article>

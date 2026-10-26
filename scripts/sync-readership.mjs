@@ -66,14 +66,16 @@ async function report(dimensions, metrics) {
 }
 function cleanInt(v){const n=Number(v);return Number.isFinite(n)&&n>=0?Math.round(n):0;}
 const [overall,byPage,byCountry]=await Promise.all([
-  report([],['screenPageViews','activeUsers']),
+  report([],['screenPageViews','totalUsers','activeUsers']),
   report(['unifiedPagePathScreen'],['screenPageViews']),
-  report(['countryId','country'],['screenPageViews','activeUsers'])
+  report(['countryId','country'],['screenPageViews','totalUsers','activeUsers'])
 ]);
 const totalRow=overall[0];
 const totals={
  views:cleanInt(totalRow?.metricValues?.[0]?.value||0),
- activeUsers:cleanInt(totalRow?.metricValues?.[1]?.value||0)
+ // Distinct GA4 users for the selected period; not a count of identified people.
+ totalUsers:cleanInt(totalRow?.metricValues?.[1]?.value||0),
+ activeUsers:cleanInt(totalRow?.metricValues?.[2]?.value||0)
 };
 const pages=byPage.map(r=>({
  path:r.dimensionValues?.[0]?.value||'',
@@ -83,12 +85,13 @@ const countries=byCountry.map(r=>({
  code:(r.dimensionValues?.[0]?.value||'').toUpperCase(),
  name:r.dimensionValues?.[1]?.value||'',
  views:cleanInt(r.metricValues?.[0]?.value),
- activeUsers:cleanInt(r.metricValues?.[1]?.value)
+ totalUsers:cleanInt(r.metricValues?.[1]?.value),
+ activeUsers:cleanInt(r.metricValues?.[2]?.value)
 })).filter(r=>/^[A-Z]{2}$/.test(r.code)&&r.views>0).sort((a,b)=>b.views-a.views);
 // GA4 realtime reports can show activity before the standard reporting API
 // finishes processing it. Never publish a false cumulative zero or replace
 // the last verified positive snapshot with an empty, provisional response.
-if (totals.views === 0 && totals.activeUsers === 0 && pages.length === 0 && countries.length === 0) {
+if (totals.views === 0 && totals.totalUsers === 0 && totals.activeUsers === 0 && pages.length === 0 && countries.length === 0) {
  console.log('GA4 daily summary has not returned verified activity; preserving existing public snapshot.');
  process.exit(0);
 }
@@ -104,4 +107,4 @@ const output={
 };
 await mkdir('src/data',{recursive:true});
 await writeFile('src/data/readership.json',JSON.stringify(output,null,2)+'\n',{encoding:'utf8'});
-console.log('Published aggregate snapshot:',{through,views:totals.views,countries:countries.length,essayPages:pages.length});
+console.log('Published aggregate snapshot:',{through,views:totals.views,trackedUsers:totals.totalUsers,countries:countries.length,essayPages:pages.length});

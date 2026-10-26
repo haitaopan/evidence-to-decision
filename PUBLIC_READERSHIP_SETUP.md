@@ -7,7 +7,7 @@ The public global-readership feature is deployed and the read-only GA4 service a
 - Dedicated `/readership/` page: larger map, totals, country-level table, and most-read essays.
 - No raw visitor-level events, identities, emails, IPs, cities, or exact visitor locations are published.
 - Small map dots are **symbolic country-level markers**, computed from map country outlines, **not actual visitor coordinates**.
-- Data comes from Google Analytics 4 and counts **only visitors who consented to analytics**; displayed “Views” means page views, not unique people. GA4 `activeUsers` reflects estimated active users, not a perfect headcount.
+- Data comes from Google Analytics 4 and counts **only visitors who consented to analytics**; “Views” means page views, not unique people. The headline user count now uses GA4 **`totalUsers`** (the distinct tracked GA4 users during the full reporting interval), keeping `activeUsers` as a secondary metric. Neither can verify unique human identities; tracking blockers can lead to undercounting.
 - Reporting period begins 2026-10-24; the script includes **today** on the initial launch date, then requests data through **yesterday** (Chicago property timezone).
 - Automatic snapshot sync runs daily at 11:17 UTC, and can be manually triggered. GitHub Actions commits `src/data/readership.json` and deploys the site; the website itself makes no secret-bearing GA4 API calls.
 - Read-only access; existing blog analytics consent settings remain unchanged.
@@ -31,3 +31,10 @@ The workflow checks for a configured GitHub Actions secret before attempting any
 If the action fails, check the message for a missing property ID, Data API not enabled, or the service account lacking Viewer access. Do not share workflow logs that accidentally contain secrets. Once configured, updates run automatically every day and new essay URLs are picked up without any new analytics setup.
 
 **Note:** The first public snapshot may take 24–48 hours to show processed views even if Realtime is already reporting users. A scheduled sync deliberately preserves a previous verified snapshot if the Data API returns no activity, and does not publish a misleading zero. When processed data appears, the first public snapshot may contain only a handful of views because the blog and analytics property are new and visitor consent is optional. After initial setup, counts appear automatically; future runs rebuild the site with current cumulative data. Data might differ from GA4 live reports because the API uses processed full days and may apply privacy thresholds.
+
+## Verification (2026-10-25)
+- The real, read-only GA4 snapshot for 2026-10-24 is available: **17 measured page views**, **1 active user**, **US 17 measured views**; each of the three published essays has one measured page view.
+- The public world map, homepage summary, per-essay view count and country totals already bind to this snapshot at static build time.
+- The automated workflow refreshes at `11:17 UTC` daily and can be manually triggered from GitHub Actions. Until the next successful sync, the website continues to show the last verified snapshot with its historical through-date.
+- The pipeline now requests `totalUsers` as the long-window tracked-user measure rather than assuming active users equals cumulative visitors, and avoids falsely showing 0 for newly published essays when GA4 hasn't reported any data yet.
+- GitHub Pages builds and automated workflow runs have been successful; the live custom-domain HTML couldn't be fetched using our external preview tool, so a manual browser visual check on the publicly deployed domain is still desirable.

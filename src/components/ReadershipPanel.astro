@@ -4,7 +4,9 @@ import ReadershipMap from './ReadershipMap.astro';
 const { compact = false } = Astro.props;
 const ready = readership.status === 'ready' && readership.totals !== null;
 const totalViews = ready ? Number(readership.totals.views || 0) : null;
-const users = ready ? Number(readership.totals.activeUsers || 0) : null;
+const hasTotalUsers = ready && Number.isFinite(readership.totals.totalUsers);
+const users = ready ? Number(hasTotalUsers ? readership.totals.totalUsers : (readership.totals.activeUsers || 0)) : null;
+const userLabel = hasTotalUsers ? 'Tracked users (GA4)' : 'Measured active users';
 const places = ready ? readership.countries.filter(c => c.views > 0).length : null;
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const fmt = n => n == null ? '—' : n.toLocaleString('en-US');
@@ -20,14 +22,14 @@ const fmt = n => n == null ? '—' : n.toLocaleString('en-US');
   </div>
   <div class="reader-metrics">
     <div><span>Measured page views</span><strong>{fmt(totalViews)}</strong></div>
-    <div><span>Measured active users</span><strong>{fmt(users)}</strong></div>
+    <div><span>{userLabel}</span><strong>{fmt(users)}</strong></div>
     <div><span>Countries / regions</span><strong>{fmt(places)}</strong></div>
   </div>
   <ReadershipMap />
   <p class="reader-source">
     {ready ? `Based on consenting visits recorded since ${readership.since}, through ${readership.through}. Last refreshed ${readership.updatedAt?.slice(0,10)}.` :
       'GA4 is connected; its first daily report is still processing. Figures are not guessed or misreported as zero.'}
-    {' '}Counts are collected only when visitors allow analytics; figures may undercount total visits.
+    {' '}Counts include only visitors who allow analytics. A GA4 user is not necessarily one distinct person, and totals may undercount actual readership.
   </p>
   <p class="reader-map-credit">World map © <a href="https://vectoratlas.menelabs.com/" target="_blank" rel="noopener noreferrer">VectorAtlas</a> / Natural Earth, CC BY 4.0.</p>
 </section>
