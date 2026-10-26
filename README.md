@@ -38,8 +38,9 @@ The blog now has an **active** Waline comment component on every published essay
 ## Subscriptions and institutional profile
 
 - RSS remains public at `/rss.xml`, generated from published essays only.
-- The `/subscribe/` page links to RSS now. Until follow.it is configured, the email section clearly says it is not available and **collects no email addresses**.
-- To activate the email link, follow the verified setup steps in `SUBSCRIPTIONS_SETUP.md`. Configure the public GitHub Actions variable `FOLLOWIT_SUBSCRIBE_URL` with the real follow.it subscribe URL after testing and consent/unsubscribe review.
+- The `/subscribe/` page now contains the official follow.it signup form supplied by the publisher, styled to match the blog; it POSTs subscriber email to follow.it directly, not to GitHub Pages.
+- RSS remains active at `/rss.xml`. Sign-up, confirmation, email delivery and unsubscribe are provided by follow.it; an owner-controlled end-to-end test is still needed to confirm delivery and feed association.
+- The public form POST action is embedded in `src/pages/subscribe/index.astro` so no GitHub Actions variable is needed for the form. The previous unused `FOLLOWIT_SUBSCRIBE_URL` variable does not control this form. See `SUBSCRIPTIONS_SETUP.md` for verification.
 - The About page and footer link to the publicly accessible [St. Jude Pan Group page](https://www.stjude.org/research/labs/pan-lab.html) for institutional context, without placing an institutional affiliation in the article byline or implying that this is an official St. Jude site.
 
 ## Readership analytics (Google Analytics 4)

@@ -1,7 +1,7 @@
 # Email subscriptions — setup and release gate
 
 ## Current status (2026-10-25)
-The site supports RSS at `https://evidencetodecision.org/rss.xml`. The blog also has a `/subscribe/` page. The RSS generator has been reviewed and its channel title includes **Haitao Pan, PhD**. Email signups are **not** active until a publisher-controlled follow.it feed, valid subscribe link, and end-to-end confirmation have been verified.
+The RSS feed is live and its title includes **Haitao Pan, PhD**. The publisher supplied the official follow.it HTML form generated in the follow.it dashboard. Its public HTTPS subscription-form POST action is now installed as a native-styled HTML form at `/subscribe/`, so readers can enter an email address without third-party scripts. **End-to-end delivery is not yet verified:** the owner should test the signup and confirmation with an email they control, check that it subscribes specifically to Evidence to Decision, and later confirm a new approved RSS post triggers an email. Do not mark automated delivery verified until that test passes.
 
 ## Next necessary account-side step — feed creation
 
@@ -39,3 +39,16 @@ follow.it's current basic publisher plan supports RSS-to-email notifications, a 
 
 ## Institutional link
 The site's About page and footer link to https://www.stjude.org/research/labs/pan-lab.html. The disclaimer remains visible and article bylines identify only Haitao Pan, PhD.
+
+## Integration record
+
+- Source: official HTML form copied by the publisher from follow.it's `Define the follow form's design` page.
+- Code location: `src/pages/subscribe/index.astro`; its `followItFormAction` is a public subscription-form POST endpoint provided by follow.it, **not a private password**.
+- Input field: `email` with `type=email` and `required`.
+- The post endpoint and follow.it handle the subscription process; GitHub Pages does not collect or retain email addresses.
+- No remote CSS, script, analytics pixel, or follow.it page embed is needed to render the input.
+- The email sender and feed association are controlled by follow.it. If the provider regenerates the form, update `followItFormAction` with a newly verified value.
+- Basic follow.it messages may include branding or other material; no claim of advertisement-free email is made.
+- **Test case 1**: open `https://evidencetodecision.org/subscribe/`, enter a controlled test email, click Subscribe, and verify which follow.it feed is offered and any confirmation email.
+- **Test case 2**: verify unsubscribe works via follow.it.
+- **Test case 3**: on the next *new* published article, check RSS includes it and the subscriber receives the expected notification. Do not publish a fake article just to test without editorial approval.

@@ -1,37 +1,30 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-const rssUrl = new URL('rss.xml', Astro.site ?? Astro.url).toString();
-const configuredUrl = import.meta.env.PUBLIC_FOLLOWIT_SUBSCRIBE_URL;
-let emailUrl: string | null = null;
-if (configuredUrl) {
-  try {
-    const u = new URL(configuredUrl);
-    if (u.protocol === 'https:' && (u.hostname === 'follow.it' || u.hostname === 'www.follow.it')) {
-      emailUrl = u.href;
-    }
-  } catch {}
-}
+const root=import.meta.env.BASE_URL.replace(/\/$/,'');
+// This is the public form POST endpoint copied from Evidence to Decision's
+// own follow.it publisher form. It is not a private API key or a password.
+const followItFormAction='https://api.follow.it/subscription-form/Q3QrNEVWLzdDMzlmMG5oWnZ1UTU1TmhkbEhDVWh6cVRweTYzVHM0cktzVXFodS9laktnOS9Nc016c2pwNmo4NHE4TXFRNzIzQndEOHUyc0d5TWVQaU1Zby9WQTBMM1Ziamc2M3pFb1pFQllOUXduNVVDenlrcEpEZEVlV3ZVdDh8cTJ1akdMTXZzTFdKUjhoOTdWYzllYWU4bnNRcTZ1c1RuZG95cnNyemx0Zz0=/8';
 ---
-<BaseLayout title="Subscribe" description="Follow new essays from Evidence to Decision by RSS, with email updates when available.">
-<div class="archive-intro"><h1>Subscribe</h1></div>
-<div class="about-content subscribe-content">
-  <p>Follow new essays on clinical trials, evidence, and the decisions between them.</p>
-  {emailUrl ? (
-    <section class="subscribe-method">
-      <h2>Email updates</h2>
-      <p>Receive a notification when a new essay is published. Subscription preferences and unsubscribe options are managed by follow.it.</p>
-      <a class="subscribe-action" href={emailUrl} target="_blank" rel="noopener noreferrer">Subscribe by email ↗</a>
+<BaseLayout title="Subscribe" description="Get Evidence to Decision essays by email or RSS, by Haitao Pan, PhD.">
+  <div class="archive-intro"><h1>Subscribe</h1></div>
+  <div class="about-content subscribe-content">
+    <p>Get new Evidence to Decision essays on clinical trials, statistics, and the decisions between them.</p>
+    <section class="subscribe-method" aria-labelledby="email-updates-title">
+      <h2 id="email-updates-title">New essays by email</h2>
+      <p>Subscribe to receive updates when a new essay is published. No account on this blog is required.</p>
+      <form class="e2d-followit-form" action={followItFormAction} method="post" aria-label="Subscribe to Evidence to Decision by email">
+        <label for="followit-subscriber-email">Your email address</label>
+        <div class="e2d-followit-fields">
+          <input id="followit-subscriber-email" type="email" name="email" autocomplete="email" inputmode="email" required placeholder="Enter your email" />
+          <button type="submit">Subscribe</button>
+        </div>
+      </form>
+      <p class="e2d-subscribe-notice">Emails and subscriptions are managed by <a href="https://follow.it" target="_blank" rel="noopener noreferrer">follow.it</a>, not stored on this website. You can unsubscribe through the emails you receive. The free service may include follow.it branding or suggested content. See our <a href={`${root}/privacy/`}>privacy information</a>.</p>
     </section>
-  ) : (
-    <section class="subscribe-method">
-      <h2>Email updates</h2>
-      <p>Email alerts are being set up. There is no email signup form yet, and no addresses are being collected on this site.</p>
+    <section class="subscribe-method" aria-labelledby="rss-updates-title">
+      <h2 id="rss-updates-title">RSS feed</h2>
+      <p>Prefer a feed reader? Follow the public RSS feed and see new essays as they are published.</p>
+      <a class="subscribe-action" href={`${root}/rss.xml`}>Open the RSS feed ↗</a>
     </section>
-  )}
-  <section class="subscribe-method">
-    <h2>RSS feed</h2>
-    <p>Prefer a feed reader? Subscribe to the public RSS feed to see new essays as they appear.</p>
-    <a class="subscribe-action" href={`${import.meta.env.BASE_URL.replace(/\/$/,'')}/rss.xml`}>Open the RSS feed ↗</a>
-  </section>
-</div>
+  </div>
 </BaseLayout>

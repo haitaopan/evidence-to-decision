@@ -76,3 +76,15 @@
 .readership-lists li a:hover{color:var(--brand-blue);text-decoration:underline}
 .readership-pending-note{max-width:730px;margin:30px 0 90px;color:var(--sub);font:15px/1.7 var(--sans)}
 @media(max-width:760px){.readership-panel-heading{align-items:flex-start;flex-direction:column}.reader-metrics{gap:7px}.reader-metrics>div{padding:12px 10px}.reader-metrics span{font-size:10px}.readership-lists{grid-template-columns:1fr;gap:32px}.readership-panel-compact{margin-bottom:50px}}
+
+/* Native styling for the official follow.it email signup form: no remote CSS or JS. */
+.e2d-followit-form{max-width:640px;margin:20px 0 0;padding:22px;border:1px solid var(--line);border-radius:7px;background:#fff}
+.e2d-followit-form label{display:block;margin:0 0 12px;color:var(--ink);font:600 13px/1.4 var(--sans)}
+.e2d-followit-fields{display:flex;gap:10px;align-items:stretch}
+.e2d-followit-fields input{flex:1;min-width:0;border:1px solid #cdd7d3;border-radius:5px;padding:13px 14px;background:white;color:var(--ink);font:14px/1.35 var(--sans)}
+.e2d-followit-fields input:focus-visible{outline:2px solid var(--brand-blue);outline-offset:2px}
+.e2d-followit-fields button{border:1px solid var(--brand-blue);border-radius:5px;background:var(--brand-blue);color:white;font:600 14px/1.35 var(--sans);padding:11px 21px;cursor:pointer}
+.e2d-followit-fields button:hover{background:#174571}
+.e2d-subscribe-notice{max-width:640px;margin:14px 0 0!important;font:12px/1.8 var(--sans);color:var(--sub)}
+.e2d-subscribe-notice a{color:var(--accent);text-decoration:underline}
+@media(max-width:600px){.e2d-followit-form{padding:17px}.e2d-followit-fields{flex-direction:column}.e2d-followit-fields button{width:100%}}
