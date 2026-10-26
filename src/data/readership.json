@@ -3,9 +3,10 @@
   "source": "Google Analytics 4",
   "since": "2026-10-24",
   "through": "2026-10-24",
-  "updatedAt": "2026-10-25T14:57:05.365Z",
+  "updatedAt": "2026-10-26T01:58:37.810Z",
   "totals": {
     "views": 17,
+    "totalUsers": 1,
     "activeUsers": 1
   },
   "pages": [
@@ -27,6 +28,7 @@
       "code": "US",
       "name": "United States",
       "views": 17,
+      "totalUsers": 1,
       "activeUsers": 1
     }
   ]
