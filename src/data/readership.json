@@ -2,20 +2,20 @@
   "status": "ready",
   "source": "Google Analytics 4",
   "since": "2026-10-24",
-  "through": "2026-10-25",
-  "updatedAt": "2026-10-26T17:21:19.324Z",
+  "through": "2026-10-26",
+  "updatedAt": "2026-10-27T16:36:17.973Z",
   "totals": {
-    "views": 51,
+    "views": 62,
     "totalUsers": 1,
     "activeUsers": 1
   },
   "pages": [
     {
-      "path": "/essays/a-promising-signal-is-not-a-development-plan/",
-      "views": 3
+      "path": "/essays/when-not-yet-becomes-no/",
+      "views": 4
     },
     {
-      "path": "/essays/when-not-yet-becomes-no/",
+      "path": "/essays/a-promising-signal-is-not-a-development-plan/",
       "views": 3
     },
     {
@@ -27,7 +27,7 @@
     {
       "code": "US",
       "name": "United States",
-      "views": 51,
+      "views": 62,
       "totalUsers": 1,
       "activeUsers": 1
     }
