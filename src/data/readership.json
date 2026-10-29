@@ -2,10 +2,10 @@
   "status": "ready",
   "source": "Google Analytics 4",
   "since": "2026-10-24",
-  "through": "2026-10-27",
-  "updatedAt": "2026-10-28T17:10:01.866Z",
+  "through": "2026-10-28",
+  "updatedAt": "2026-10-29T17:25:34.985Z",
   "totals": {
-    "views": 62,
+    "views": 77,
     "totalUsers": 1,
     "activeUsers": 1
   },
@@ -27,7 +27,7 @@
     {
       "code": "US",
       "name": "United States",
-      "views": 62,
+      "views": 77,
       "totalUsers": 1,
       "activeUsers": 1
     }
