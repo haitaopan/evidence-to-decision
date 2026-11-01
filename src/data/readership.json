@@ -2,12 +2,12 @@
   "status": "ready",
   "source": "Google Analytics 4",
   "since": "2026-10-24",
-  "through": "2026-10-30",
-  "updatedAt": "2026-10-31T16:04:44.993Z",
+  "through": "2026-10-31",
+  "updatedAt": "2026-11-01T17:06:53.351Z",
   "totals": {
-    "views": 88,
-    "totalUsers": 1,
-    "activeUsers": 1
+    "views": 89,
+    "totalUsers": 2,
+    "activeUsers": 2
   },
   "pages": [
     {
@@ -27,9 +27,9 @@
     {
       "code": "US",
       "name": "United States",
-      "views": 88,
-      "totalUsers": 1,
-      "activeUsers": 1
+      "views": 89,
+      "totalUsers": 2,
+      "activeUsers": 2
     }
   ]
 }
