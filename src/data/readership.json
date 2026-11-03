@@ -2,10 +2,10 @@
   "status": "ready",
   "source": "Google Analytics 4",
   "since": "2026-10-24",
-  "through": "2026-11-01",
-  "updatedAt": "2026-11-02T20:45:03.381Z",
+  "through": "2026-11-02",
+  "updatedAt": "2026-11-03T18:25:08.089Z",
   "totals": {
-    "views": 89,
+    "views": 98,
     "totalUsers": 2,
     "activeUsers": 2
   },
@@ -21,13 +21,17 @@
     {
       "path": "/essays/before-we-borrow-can-the-evidence-be-repaired/",
       "views": 2
+    },
+    {
+      "path": "/essays/off-study-is-not-off-the-evidence/",
+      "views": 1
     }
   ],
   "countries": [
     {
       "code": "US",
       "name": "United States",
-      "views": 89,
+      "views": 98,
       "totalUsers": 2,
       "activeUsers": 2
     }
