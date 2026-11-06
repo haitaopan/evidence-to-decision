@@ -817,3 +817,308 @@ If we change the estimand—for example, moving from a treatment-policy effect t
 That is a very important methodological boundary.
 
 ---
+
+# IX. Why Can't the Same Missing-Data Method Be Applied Mechanically Across Clinical Fields?
+
+I want to illustrate this with three different clinical scenarios.
+
+## Scenario One: Continuous Depression Symptom Scores
+
+Suppose a depression trial measures each patient's symptom score at baseline and at Weeks 2, 4, and 8.
+
+One patient has a baseline score of 20 but no subsequent data at all.
+
+We do not know whether the patient improved.
+
+If we want to estimate the mean symptom score at Week 8, a reasonable analysis will generally need to draw on information from other patients, baseline severity, treatment assignment, auxiliary variables associated with missingness and outcomes, and clearly specified missing-data assumptions.
+
+If the patient dropped out because of an early lack of efficacy, assuming MAR may require additional justification.
+
+If the patient received rescue medication, we must also decide which estimand strategy applies to that event.
+
+Here, MMRM, MI, reference-based imputation, or pattern-mixture approaches may all have practical value.
+
+But whichever method is chosen must be aligned with the clinical question.
+
+## Scenario Two: Objective Response in Pediatric Oncology
+
+Now change the endpoint to objective response rate.
+
+The patient has no Week 8 imaging.
+
+We cannot simply apply the same reasoning we used for a continuous symptom score.
+
+Here, imaging windows, response confirmation, disease progression, treatment discontinuation, death, and lesion evaluability all matter.
+
+Sometimes a patient without a confirmed response may be classified as a non-responder according to protocol rules.
+
+At other times, we need to discuss genuinely missing response information.
+
+The key is the endpoint definition and estimand, rather than deciding in advance to use NRI.
+
+## Scenario Three: Oncology PFS
+
+PFS poses a different problem again.
+
+A patient may miss one imaging assessment but then be found to have disease progression at the next scan.
+
+If an unobserved progression occurred during the interval between assessments, the true progression time may be uncertain.
+
+If the patient is completely lost to follow-up, censoring assumptions also come into play.
+
+The question is no longer as simple as using MI to fill in a continuous numerical outcome.
+
+We need to establish:
+
+What are the event definitions and date-assignment rules?
+
+Does death count as a PFS event?
+
+How do missed scans affect the detection of disease progression?
+
+Might censoring be associated with disease risk?
+
+Could differences in assessment schedules affect comparisons between groups?
+
+Do we need appropriate analyses addressing informative censoring, interval uncertainty, or other mechanisms?
+
+Moreover, right-censoring caused by an administrative follow-up cutoff should not be treated as interchangeable with early loss to follow-up caused by deterioration in health.
+
+Therefore:
+
+**Even though all three cases involve missing information, continuous outcomes, binary response, and time-to-event outcomes may require entirely different statistical strategies.**
+
+This is precisely why I do not favor treating any single missing-data algorithm as a universal answer.
+
+---
+
+# X. What Should We Still Do When the Data Can No Longer Be Recovered?
+
+Someone may ask:
+
+If the data truly do not exist and there is no remaining possibility of recovering them, does the earlier clinical review still have any value?
+
+My answer is yes—and it may be extremely important.
+
+Even when the true outcome cannot be recovered, clinical review can still help establish:
+
+Whether missingness is associated with treatment;
+
+Whether it is associated with severe toxicity or worsening disease;
+
+Whether there are differences between treatment groups;
+
+Which auxiliary information remains available;
+
+Which missing-data assumptions are comparatively reasonable;
+
+What range should be considered in sensitivity analyses;
+
+And whether some conclusions go beyond what the existing evidence can support.
+
+We must also acknowledge that some missingness mechanisms cannot be characterized sufficiently reliably using the available data.
+
+In that case, statisticians should not pretend that these problems have been solved.
+
+But neither should we refuse to analyze the data simply because information is incomplete.
+
+Our inferences should be commensurate with the information available and the strength of the assumptions required.
+
+For example, in a trial with a low missing-data rate, a relatively well-understood clinical mechanism, and conclusions that remain stable over a reasonable sensitivity range, we may maintain substantial confidence in the treatment effect.
+
+Conversely, in a trial with a high missing-data rate, different discontinuation mechanisms between groups, and findings that depend heavily on an unverifiable assumption, we should be cautious about the credibility of the evidence—even if the primary analysis produces a very small p-value.
+
+The key is not whether the method is sufficiently sophisticated.
+
+It is whether confidence in the conclusion is justified by the quality of the data, the clinical facts, and the strength of the assumptions.
+
+---
+
+# XI. The Best Time to Prevent Missing-Data Problems Is During Trial Design
+
+So far, we have mainly discussed what to do when a dataset already contains missing outcomes.
+
+But for future trials, I believe the most important work should happen earlier.
+
+During protocol design, CRF development, and study operations planning, we should already be considering which critical information might be missing later.
+
+For example:
+
+### Which Data Will We Continue to Collect After Treatment Is Discontinued?
+
+The answer should be determined by the estimand and clinical question.
+
+If we need to estimate the overall effect of a treatment strategy that includes treatment discontinuation, stopping the study drug generally should not mean that all efficacy follow-up automatically ends.
+
+Whenever possible, trials should design mechanisms for continued data collection that are ethically appropriate and operationally feasible.
+
+Of course, informed consent, the patient's wishes about withdrawing from research, and applicable requirements must be respected.
+
+### If a Patient Cannot Complete a Scheduled Assessment, What Alternative Information Sources Do We Have?
+
+In oncology trials, possible sources might include outside-hospital imaging, medical records, death records, or other qualifying assessment results.
+
+For patient-reported outcomes, remote data collection or more flexible follow-up arrangements may be worth considering.
+
+However, whether alternative data may be used for the primary endpoint should be considered in advance, including measurement comparability, data quality, and the relevant analysis rules.
+
+### If a Particular Data Field Is Missing, What Are the Consequences?
+
+I think an evidence-readiness assessment of critical variables could be conducted during CRF design:
+
+Does the field support the primary endpoint?
+
+Can the information be recovered if it is missing?
+
+Can it be derived from other fields?
+
+If it is irrecoverable, will endpoint evaluability be affected?
+
+Will its absence change the assumptions on which the primary statistical analysis relies?
+
+If it could affect an important clinical decision, can we take preventive measures before the trial begins?
+
+This review is not intended to score protocols or create unnecessary data-collection burdens.
+
+Its purpose is to ensure that:
+
+**The evidence we genuinely need can be reasonably observed, documented, and preserved during the conduct of a clinical trial.**
+
+There is also a trade-off in the allocation of resources.
+
+Not every variable should be collected without limits.
+
+More data fields can increase the burden on patients and research teams, and may even reduce overall data quality.
+
+Good evidence-readiness planning is not about collecting everything. It is about giving priority to information essential to the main clinical questions.
+
+---
+
+# XII. Missing-Data Methodology Should Serve Evidence Credibility
+
+I want to introduce a broader concept:
+
+**Evidence credibility.**
+
+In traditional statistical evaluation, we may focus primarily on:
+
+Is bias small?
+
+Is Type I error controlled?
+
+Is power adequate?
+
+Does confidence interval coverage achieve its nominal level?
+
+These properties are extremely important.
+
+But if we want statistical results to support real clinical decisions, I believe another level of assessment is necessary.
+
+Given an estimate:
+
+What assumptions does it depend on?
+
+Can those assumptions be supported by clinical facts?
+
+Were the most critical data actually observed?
+
+Have the reasons for missingness been adequately explained?
+
+Are there data that could have been recovered but were not?
+
+Do the results remain stable under clinically plausible alternative assumptions?
+
+If the results change, is it statistical significance, clinical importance, or the ultimate decision that changes?
+
+Can we clearly explain to clinical PIs, DSMBs, regulatory reviewers, and other researchers which conclusions come from observed data and which depend on modeling assumptions?
+
+I believe a genuinely credible missing-data analysis should be able to address these questions.
+
+The goal is not to propose a new, unvalidated credibility score.
+
+Instead, I advocate a transparent, structured process for judging evidence.
+
+Statistical methods can help us quantify uncertainty, but they cannot replace judgments about the sources and applicability of evidence.
+
+Nor can every type of uncertainty be fully expressed by a single standard error or confidence interval.
+
+Sometimes we must also explicitly identify uncertainty about identification assumptions, model risk, and limitations of clinical interpretation.
+
+This is another reason I believe missing-data research and clinical evidence engineering should become more closely integrated.
+
+---
+
+# XIII. Putting This Approach to Work in Everyday Statistical Practice
+
+I do not want this article to remain purely theoretical.
+
+Suppose a statistician receives an email saying:
+
+“We have several subjects with no post-baseline assessment. Can you advise how to handle them in the analysis?”
+
+I would suggest not immediately replying:
+
+“Use multiple imputation.”
+
+Nor should we immediately reply:
+
+“Treat all missing assessments as non-response.”
+
+A better approach is to organize a brief, structured review first.
+
+## I Would Ask the Team to Prepare a Missing Outcome Review Table
+
+| Item | Question to be answered |
+|---|---|
+| Subject ID | Which patient? |
+| Treatment assignment | Which group? Maintain blinding where necessary |
+| Endpoint / visit | Which endpoint and visit are missing? |
+| Last available assessment | What was the last reliable observation? |
+| Treatment / disease status | Did discontinuation, progression, toxicity, death, or another event occur? |
+| Reason for missing | Why is the outcome absent? |
+| Existing source information | Are source records, images, or other documentation available? |
+| Recoverability | Can the information be recovered under the applicable requirements? |
+| Relevant estimand | Which estimand is affected by this missingness? |
+| Proposed resolution | What action is proposed? |
+| Remaining assumptions | Which assumptions are still required if the data cannot be recovered? |
+| Decision consequence | How might the missing information affect a critical clinical conclusion? |
+
+This table need not be especially complex.
+
+For a handful of critical patients, a concise and accurate review record may be more useful than immediately running dozens of imputation models.
+
+If the problem continues to occur after the trial begins, the team should also monitor patterns of missingness regularly.
+
+For example, are there substantial differences across study sites, treatment groups, visit stages, or reasons for discontinuation?
+
+This may help not only with the final analysis but also with improving the follow-up process while the study is ongoing.
+
+## Then Hold a Brief Clinical–Statistical Review
+
+The goal of the meeting is not for everyone to select their favorite statistical method.
+
+It is to reach several clear conclusions:
+
+First, which data have been confirmed?
+
+Second, which data can still be recovered?
+
+Third, which missing outcomes are associated with intercurrent events?
+
+Fourth, does the existing SAP adequately cover these situations?
+
+Fifth, if the remaining missingness must be handled analytically, which assumptions best fit the clinical circumstances?
+
+Sixth, which sensitivity analyses would genuinely test the robustness of the primary conclusions?
+
+One point deserves particular attention: if the trial is already under way or approaching unblinding, the primary analysis should not be modified arbitrarily in light of observed treatment results.
+
+Any necessary changes should follow principles such as prespecification, blinded review, appropriate approval, complete version records, and transparent reporting.
+
+These are important safeguards against bias introduced by analytical flexibility.
+
+Finally, the statistician should complete the formal analysis based on the clearly defined estimand, available data, and analysis plan.
+
+I believe this sequence better reflects the actual needs of clinical trial evidence generation.
+
+---
