@@ -255,3 +255,259 @@ The correct question is:
 That is the question ITT and missing-data analysis should answer together.
 
 ---
+
+# IV. The Complete Workflow I Believe Clinical Trial Statisticians Should Follow
+
+If a clinical trial team handed me a dataset with missing data today, I would not begin by choosing MMRM or multiple imputation.
+
+I would work through the following steps.
+
+## Step 1. Start with the Clinical Decision: What Exactly Are We Trying to Decide with These Data?
+
+I consider this the most important starting point of the entire workflow.
+
+Clinical trials do not exist to produce a p-value.
+
+They generally exist to support a particular decision.
+
+For example:
+
+- Should development of a drug continue?
+- Should it advance to the next phase of clinical trials?
+- Is a particular dose or schedule worth further investigation?
+- Is there sufficient evidence to support clinical efficacy?
+- Does the benefit of treatment outweigh its toxicity?
+- Can an application be submitted to a regulatory agency?
+- Should a treatment strategy change current clinical practice?
+
+Different decisions may require very different levels of evidence completeness.
+
+Suppose two clinical trials each have 10% missing data.
+
+The first is a large randomized trial with a continuous symptom score as its primary endpoint.
+
+The second is an early pediatric oncology trial with only 20 patients, using tumor response to support a go/no-go decision.
+
+Even if their missing-data percentages are identical, the clinical evidence problems they face may be fundamentally different.
+
+Especially in a small trial, the actual outcomes of just one or two patients may determine whether a prespecified decision threshold is crossed.
+
+My first question, therefore, is:
+
+**If we are uncertain about the true outcomes of these patients, which decision could that uncertainty affect?**
+
+We should not first calculate a missing-data percentage and only then decide how serious the problem is.
+
+We should first define the decision, then judge the actual impact of the missing information.
+
+## Step 2. Define the Estimand: What Kind of Treatment Effect Do We Need to Know?
+
+Once the clinical question is clear, the next step is to define the estimand.
+
+At a minimum, we need to address five attributes:
+
+**Population:** Which patients are we interested in?
+
+**Treatment conditions:** Which treatment conditions or strategies are being compared?
+
+**Variable:** Which particular outcome reflects the clinical question of interest?
+
+**Intercurrent events:** When treatment discontinuation, rescue therapy, switching, progression, or death occurs, how should it be handled in the definition of the treatment effect?
+
+**Population-level summary:** Are we trying to estimate a mean difference, risk difference, risk ratio, hazard ratio, or another clinically meaningful quantity?
+
+Consider treatment discontinuation.
+
+If we use a treatment-policy strategy, we may still need the outcomes observed after discontinuation.
+
+If we use a hypothetical strategy, we may need to estimate what the outcome would have been if treatment had not been discontinued.
+
+If we use a composite strategy, certain events may directly become part of the outcome definition.
+
+If we use a while-on-treatment strategy, the observation window of interest may be different again.
+
+There is an important additional point:
+
+Death is not the same as ordinary treatment discontinuation.
+
+For an outcome defined as a quality-of-life score among patients alive at a particular time, the score after death may not be defined at all.
+
+In that situation, we cannot simply treat a post-death score as an ordinary missing value and hand it to MMRM.
+
+We should first consider whether a composite endpoint, while-alive strategy, principal-stratum strategy, or another definition aligned with the clinical question is needed.
+
+Therefore:
+
+**Before the estimand is clear, the question “How should we impute the missing data?” is often not even fully defined.**
+
+## Step 3. Build a Required-Evidence Map: Which Information Must Be Observed?
+
+After defining the estimand, I would translate the clinical question into an explicit list of data requirements.
+
+This is especially valuable during protocol development and CRF design.
+
+For example, for a trial with a tumor-response endpoint evaluated within a fixed time window, we need to specify:
+
+Did the patient receive treatment?
+
+At which times should tumor imaging be performed?
+
+Which response criteria should be used?
+
+Who will assess the images?
+
+Is response confirmation required?
+
+Are outside-hospital images acceptable?
+
+If a patient withdraws early, is an assessment still required?
+
+How do disease progression and death affect endpoint classification?
+
+If an imaging assessment cannot be obtained, is alternative clinical evidence available?
+
+For a repeated-measures continuous outcome, we may need:
+
+Measurements at each scheduled visit;
+
+Baseline disease severity;
+
+Important covariates associated with the outcome;
+
+Timing of treatment discontinuation or rescue therapy;
+
+Whether measurements continue after treatment is stopped;
+
+Reasons for missingness and relevant auxiliary information.
+
+These are not exclusively statistical-analysis questions.
+
+They also involve the protocol, CRF, EDC, clinical visit schedule, imaging management, data quality, and the research team's ability to execute the study.
+
+I would summarize this process as:
+
+**Decision → Estimand → Required observations → Assessment timing → Data source → Provenance → Consequence if missing.**
+
+Provenance is particularly important here.
+
+We should know not just whether a data field contains a value, but, as far as possible, where that value came from, when it was measured, how it was confirmed, and whether it satisfies the endpoint definition.
+
+In this way, missing-data analysis shifts from a statistical task performed shortly before database lock to a question addressed at the clinical trial design stage.
+
+## Step 4. Diagnose Missingness: First Understand What “No Data” Actually Means
+
+When we discover that a patient's outcome is absent, the next step is not simply to assign a missing indicator. It is to conduct an evidence diagnosis.
+
+I would distinguish at least five situations.
+
+| Situation | What it actually means | Priority action |
+|---|---|---|
+| Data exist but are not entered | The assessment was completed but has not entered the analysis database | Verify and enter the data |
+| Data may be recoverable | The result may exist at an outside hospital, in an imaging system, or in source records | Investigate within applicable permissions |
+| Outcome is defined by a clinical event | An event has occurred and, under prespecified rules, determines the outcome | Verify the event and endpoint rules |
+| Outcome is genuinely unobserved | The target outcome was not actually measured | Assess the missingness mechanism and estimation assumptions |
+| Outcome is not defined under the chosen variable | After a particular clinical event, the target variable does not exist or is not applicable | Revisit the estimand and event strategy |
+
+These five situations should not be handled as though they were the same.
+
+The third and fifth categories deserve particular emphasis.
+
+For example, death may be an event for certain time-to-event endpoints, but it may render some continuous outcomes undefined.
+
+Its treatment cannot be separated from the endpoint and estimand.
+
+We should not mechanically reason:
+
+“The database has no value for this outcome, so imputation is necessary.”
+
+A blank field in the database is not the same thing as genuinely missing clinical evidence.
+
+## Step 5. Clinical Adjudication: Review the Clinical Course of Important Missing Cases, Patient by Patient
+
+For particularly important missing outcomes, especially in small trials or for critical endpoints, I favor a patient-by-patient review.
+
+This does not mean that statisticians should replace physicians in making clinical judgments.
+
+Quite the opposite: statisticians should work with the clinical PI, Data Management, Clinical Operations, and medical monitoring teams to understand what actually happened to each patient.
+
+I generally want to see a timeline:
+
+Randomization → First dose → Treatment exposure → Adverse events → Discontinuation or progression → Planned assessment → Actual available evidence.
+
+For example:
+
+A patient receives treatment on Day 1.
+
+Grade 3 toxicity occurs on Day 12.
+
+Treatment is discontinued on Day 18.
+
+An efficacy assessment was scheduled for Day 28.
+
+Ultimately, no Day 28 data are available.
+
+At that point, the first question worth asking is not whether to use BOCF or MI.
+
+Instead:
+
+Why are there no Day 28 data for this patient?
+
+Did the study stop requiring follow-up after the patient discontinued treatment because of toxicity?
+
+Or did the patient continue receiving routine care at the hospital after discontinuation, while those clinical data were simply not entered into the research database?
+
+If the data could originally have been collected, why did that not happen?
+
+For our defined estimand, do the outcomes after treatment discontinuation remain meaningful?
+
+Without answers to these questions, it is difficult to know how much assumption-related risk the chosen model must bear.
+
+One further practical principle is essential:
+
+**Patient-by-patient review must follow prespecified or objectively consistent rules, preferably while blinded and with appropriate clinical personnel involved, to avoid selectively recovering, interpreting, or excluding patients on the basis of known treatment results.**
+
+The more important the clinical interpretation, the greater the need for an auditable process.
+
+## Step 6. Recover Real Evidence First, Then Consider Statistical Imputation
+
+This is a step I particularly want to emphasize.
+
+Suppose five patients lack scheduled tumor assessments.
+
+After reviewing the records, we discover:
+
+Two patients completed their scans, but the images have not yet been uploaded.
+
+One patient's outside-hospital assessment records are obtainable.
+
+One patient died early and therefore did not undergo the scheduled scan.
+
+The final patient was genuinely lost to follow-up, and no subsequent information can be obtained.
+
+Initially, it appeared that we had five missing outcomes.
+
+After investigating the clinical information, however, the situation is entirely different.
+
+The first three patients' data may be recoverable.
+
+The fourth patient's death is already a known clinical event and must be handled according to the prespecified endpoint and estimand.
+
+Only the fifth patient may represent genuinely irrecoverable outcome uncertainty.
+
+Of course, whether outside-hospital data can be used depends on the protocol, scope of consent, measurement comparability, time windows, and other prespecified requirements. Finding a numerical value does not automatically justify including it.
+
+Nevertheless, the example illustrates a basic point:
+
+**Recoverable evidence is not an imputation problem.**
+
+I do not believe that a sophisticated multiple-imputation algorithm can replace a reasonable check of actual clinical records.
+
+In practice, we should prioritize recovering information wherever doing so is clinically meaningful, operationally feasible, and consistent with ethical and authorization requirements.
+
+Such investigations should also have reasonable limits in time, resources, and completeness; they should not prevent the database from being locked indefinitely.
+
+Only when the information genuinely cannot be obtained should we move on to statistical inference.
+
+That is the order I believe missing-data management should follow.
+
+---
