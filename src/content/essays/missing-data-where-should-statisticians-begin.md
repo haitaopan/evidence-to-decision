@@ -1122,3 +1122,199 @@ Finally, the statistician should complete the formal analysis based on the clear
 I believe this sequence better reflects the actual needs of clinical trial evidence generation.
 
 ---
+
+# XIV. How Do We Know When a Missing-Data Analysis Is Good Enough?
+
+I do not believe there is a single missing-data solution suitable for every clinical trial.
+
+But I do think that a relatively stable set of review criteria is possible.
+
+A credible analysis should, at a minimum:
+
+- [ ] Clearly identify the clinical question and estimand it serves.
+- [ ] Distinguish genuinely unobserved outcomes, intercurrent events, and measurements that are not applicable.
+- [ ] Describe the amount, timing, distribution between groups, and reasons for missingness.
+- [ ] Make reasonable efforts to recover qualifying real data.
+- [ ] Clarify the relationship between the primary estimator and the estimand.
+- [ ] State the key missing-data assumptions and explain their clinical basis.
+- [ ] Use reasonable sensitivity analyses to assess the robustness of the primary conclusion.
+- [ ] Distinguish sensitivity analyses addressing the same estimand from supplementary analyses addressing different questions.
+- [ ] Report analytical uncertainty and aspects that cannot be identified.
+- [ ] Explain whether missing information could change the actual clinical decision.
+- [ ] Maintain complete, auditable records of data handling and analysis.
+
+This does not mean that every trial requires an equally complex investigation.
+
+Some trials have very little missingness, and the issue is straightforward.
+
+Others may require complex MNAR sensitivity analyses.
+
+Still others may have lost so much information that sufficiently robust clinical conclusions cannot be drawn.
+
+What really matters is matching the complexity of the analysis to the clinical question, missing-data risk, and consequences of the decision.
+
+---
+
+# XV. Rethinking Missing-Data Research: What Should We Study?
+
+This article is not an argument that traditional missing-data methods are unworthy of research.
+
+In fact, many important questions still deserve in-depth investigation.
+
+For example, what are the properties of different estimators when missingness mechanisms are jointly influenced by treatment, disease severity, and earlier outcomes?
+
+When the treatment and control groups have different missingness mechanisms, are estimates of the treatment effect stable?
+
+When only a small number of patients have no post-baseline outcome at all, which methods can maintain reasonable frequentist operating characteristics?
+
+In finite samples, how can we efficiently evaluate the impact of complex MNAR assumptions?
+
+All of these research questions are highly meaningful.
+
+But I hope future methodological research will connect more explicitly to real clinical evidence problems.
+
+For example, could we study:
+
+How much estimation bias can different data-recovery strategies reduce?
+
+Under what circumstances is the informational value of additional clinical follow-up greater than that of a more sophisticated estimation model?
+
+How can we prioritize follow-up and data verification based on the clinical decision at stake?
+
+How much do different patterns of missingness affect go/no-go decisions?
+
+How can we design simulations in which missingness mechanisms genuinely reflect disease worsening, treatment toxicity, rescue therapy, and clinical follow-up processes, rather than merely a mathematical missingness-probability function?
+
+How can we translate clinically credible MNAR scenarios into interpretable sensitivity analyses?
+
+This research is not fundamentally at odds with traditional methodology.
+
+It connects statistical questions to evidence generation and decision-making.
+
+I believe research of this kind would be of more direct value to actual clinical trials.
+
+---
+
+# XVI. A Statistician's Real Responsibility Is Not to Fill Every Blank Field
+
+I want to return, finally, to a very simple question.
+
+What responsibilities should statisticians actually assume in clinical trials?
+
+Of course, we must choose appropriate statistical models.
+
+We must ensure that hypothesis tests and confidence intervals have reasonable properties.
+
+We must understand MAR, MNAR, MI, MMRM, pattern-mixture models, and a variety of modern statistical methods.
+
+These are all fundamental professional competencies.
+
+But I believe an experienced clinical trial statistician should be more than someone who knows how to run models.
+
+We should also understand the clinical question.
+
+We should know which data are genuinely important.
+
+We should recognize when missingness may arise from unreasonable trial design or follow-up procedures.
+
+We should know when it is essential to review patient records with the clinical team.
+
+We should understand which estimands depend on stronger assumptions.
+
+We should be clear about which problems statistical methods can solve—and which they cannot.
+
+More importantly, we should be able to explain to the clinical team:
+
+**What exactly do we know, what do we not know, and, given those limitations, which decisions can we still responsibly make?**
+
+Statistics cannot create clinical facts that were never observed.
+
+But statistics can help us make use of the available information, articulate assumptions, quantify uncertainty, and judge whether a conclusion is sufficiently robust.
+
+That is the fundamental value of missing-data methodology.
+
+The issue is not whether we use MMRM, MI, or another method.
+
+The issue is whether we apply those methods to the right clinical question.
+
+I would therefore organize the logic of missing-data analysis as follows:
+
+**Clinical decision**
+
+↓
+
+**Clinical question and estimand**
+
+↓
+
+**Required observations and evidence sources**
+
+↓
+
+**Missingness diagnosis and intercurrent-event assessment**
+
+↓
+
+**Recovery of real clinical evidence where feasible**
+
+↓
+
+**Explicit identification assumptions and statistical estimation**
+
+↓
+
+**Clinically informed sensitivity analysis**
+
+↓
+
+**Evidence credibility and decision robustness**
+
+↓
+
+**Transparent interpretation and clinical action**
+
+Within this workflow, the statistical estimator remains extremely important.
+
+But it is not the starting point.
+
+The true starting point is the clinical question we seek to answer.
+
+And the true endpoint is not a complete data matrix, an attractive results table, or a statistically significant p-value.
+
+It is to provide evidence that is as reliable, transparent, and interpretable as possible for real clinical decisions.
+
+**The goal is not to make every randomized patient contribute an imputed value. The goal is to make the strongest defensible inference for the clinical question, while being transparent about what was never observed.**
+
+That is the principle I hope clinical trial statisticians will always uphold when dealing with missing data.
+
+---
+
+## Further Reflection: A Question Worth Asking Ourselves Regularly
+
+The next time someone hands us a dataset with missing outcomes and asks:
+
+“Which imputation method should we use?”
+
+Perhaps we should first ask a different question:
+
+**“Before deciding how to impute the missing outcomes, can we first understand what happened to these patients, what information we truly need, and whether that information is still obtainable?”**
+
+Only when we can answer that question does the subsequent missing-data analysis often become truly meaningful.
+
+---
+
+## References and Further Reading
+
+1. International Council for Harmonisation. *ICH E9(R1): Addendum on Estimands and Sensitivity Analysis in Clinical Trials.* 2019.  
+   https://database.ich.org/sites/default/files/E9-R1_Step4_Guideline_2019_1203.pdf
+
+2. National Research Council. *The Prevention and Treatment of Missing Data in Clinical Trials.* National Academies Press, 2010.  
+   https://doi.org/10.17226/12955
+
+3. European Medicines Agency. *Guideline on Missing Data in Confirmatory Clinical Trials.* 2010; effective 2011.  
+   https://www.ema.europa.eu/en/scientific-guidelines/missing-data-confirmatory-clinical-trials
+
+4. Kahan BC, Hindley J, Edwards M, et al. *The estimands framework: a primer on the ICH E9(R1) addendum.* BMJ. 2024;384:e076316.  
+   https://doi.org/10.1136/bmj-2023-076316
+
+*This article is a personal methodological discussion of clinical trial statistical workflows. It aims to explain how missing-data handling can be connected to clinical questions, evidence collection, and decision-making, rather than to propose a new theory of missing-data estimation.*
