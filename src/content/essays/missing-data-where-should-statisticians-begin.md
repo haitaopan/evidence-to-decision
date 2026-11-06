@@ -511,3 +511,309 @@ Only when the information genuinely cannot be obtained should we move on to stat
 That is the order I believe missing-data management should follow.
 
 ---
+
+# V. When the Data Truly Cannot Be Recovered, What Should the Statistician Do?
+
+Only at this point do we enter the core territory of traditional missing-data methodology.
+
+I am not suggesting that we should stop the analysis here.
+
+On the contrary, this is precisely where statistical methods can begin to play their proper role.
+
+## Step 7. Choose the Analysis Method Based on the Estimand, Endpoint, and Missingness Mechanism
+
+We first need to recognize a basic fact:
+
+The missing-data mechanism generally cannot be fully verified from the observed data alone.
+
+We can investigate whether missingness is associated with observed baseline covariates, treatment assignment, previous outcomes, toxicity events, or visit history.
+
+But these investigations cannot prove that MAR holds, nor can they directly rule out MNAR.
+
+For example, an analysis might assume:
+
+$$
+P(R=1\mid Y_{\mathrm{mis}},Y_{\mathrm{obs}},X,A)
+=
+P(R=1\mid Y_{\mathrm{obs}},X,A).
+$$
+
+This is a simplified representation of MAR.
+
+It does not mean that the data are “missing completely at random.”
+
+Rather, it means that after conditioning on the observed information included in the model, the probability of missingness no longer depends on the unobserved outcome.
+
+An easily overlooked question follows:
+
+**Did we actually collect sufficiently rich information in the database to make that assumption clinically credible?**
+
+If patients stop attending follow-up because their disease has seriously worsened, but we do not record the reasons for deterioration, relevant symptoms, recent assessments, or changes in treatment, then imputation based only on baseline characteristics may fail to adequately explain the missingness mechanism.
+
+Conversely, if the research team carefully documents prior efficacy trends, toxicity, reasons for discontinuation, and auxiliary assessments, the statistical model may have access to much more valuable information.
+
+This again shows that the validity of missing-data methodology depends, to some extent, on the quality of clinical evidence collection that occurred earlier.
+
+### MMRM: Useful, but Not Automatically Correct
+
+MMRM can make highly effective use of observed longitudinal outcomes when analyzing certain kinds of incomplete repeated-measures data.
+
+But using MMRM does not mean every missingness mechanism has been resolved.
+
+The model must align with the target estimand and relies on assumptions about the outcome distribution, correlation structure, missingness mechanism, and other features.
+
+In particular, when treatment discontinuation is related to the true outcome, retaining only on-treatment data and ignoring outcomes after discontinuation may cause MMRM to implicitly estimate a hypothetical treatment effect that was not the effect we originally intended to estimate.
+
+Before analysis, therefore, we must confirm:
+
+Is the treatment effect estimated by MMRM actually the treatment effect we need?
+
+### Multiple Imputation: It Can Propagate Uncertainty, but It Cannot Create Real Observations
+
+Multiple imputation can appropriately represent some of the uncertainty associated with missing data by generating unobserved outcomes repeatedly.
+
+But its validity depends on the imputation model, target estimand, missingness assumptions, and compatibility between imputation and analysis.
+
+If critical predictive information was never collected, increasing the number of imputations will not automatically repair incorrect assumptions about missingness.
+
+Repeating the same guess many times does not turn it into a fact.
+
+### BOCF or LOCF: Simplicity Does Not Mean Validity
+
+Suppose a patient's baseline score is 20 and their first follow-up outcome is missing. Setting the change from baseline to zero does not mean that the patient truly experienced no change.
+
+Their actual outcome may have improved or worsened.
+
+In certain well-defined clinical or statistical circumstances, a particular conservative rule may be defensible.
+
+But we cannot assume that a single-value imputation method will necessarily be conservative for the treatment contrast, Type I error, or clinical decision simply because it appears conservative.
+
+Conservatism depends on the treatment groups, missingness mechanism, endpoint, and estimation target.
+
+I would therefore not regard BOCF or LOCF as universally appropriate solutions to missing data.
+
+### Non-Responder Imputation: Distinguishing Endpoint Definition from Assumption Is Especially Important
+
+Non-responder imputation (NRI) is very common in oncology clinical trials.
+
+But we must ask:
+
+Does an unobserved response mean that no response occurred?
+
+If the endpoint is “objectively confirmed response within a specified period,” a patient without any confirmable response may be classified as a non-responder under prespecified assessment rules.
+
+But if the research question concerns whether a patient truly experienced tumor shrinkage and that shrinkage simply was not measured, NRI should not be presented as if we know that the patient did not respond.
+
+The first situation may involve an observable, verifiable endpoint definition.
+
+The second involves an assumption about an unobserved outcome.
+
+The two may use the same numerical coding, but they have different scientific meanings.
+
+---
+
+# VI. A Concrete Example: Five Patients in an Early Pediatric Oncology Trial
+
+Suppose we are conducting a small pediatric oncology Phase II trial with objective response within a fixed assessment window as its primary endpoint.
+
+The study plans to enroll 25 patients.
+
+Five patients do not complete their scheduled first response assessments.
+
+Consider these patients:
+
+| Patient | Known clinical information | How should we think about it? |
+|---|---|---|
+| A | Imaging was completed but not uploaded to the study database | Verify and obtain the images first |
+| B | Severe toxicity after treatment, followed by early discontinuation | Clarify the toxicity event, endpoint, and subsequent assessment requirements |
+| C | Death before the scheduled assessment | Apply prespecified rules for death; do not arbitrarily treat it as ordinary missingness |
+| D | Imaging performed at an outside hospital | Assess whether it meets protocol requirements and can be used for endpoint determination |
+| E | Lost contact, with no further clinical information | The patient for whom missingness assumptions particularly need examination |
+
+If the statistician sees only the database, they may see five blank response fields.
+
+But after clinical review, we find that the information status of each patient is very different.
+
+We should then ask a further question:
+
+What is the trial's go/no-go decision?
+
+For example, is there a prespecified minimum number of confirmed responses required before the drug is considered worthy of further investigation?
+
+If the true response classification of one patient could push the trial across its decision threshold, then that missing outcome is extremely important.
+
+Conversely, if the prespecified go/no-go decision would remain unchanged regardless of that patient's outcome, the missingness must still be reported accurately and handled appropriately, but its impact on the current decision may be relatively limited.
+
+This leads to a concept I find highly practical:
+
+**Decision-relevant missingness.**
+
+It is not a new statistical classification of missing-data mechanisms. It is a way to establish priorities in practice:
+
+How much does a particular missing piece of information matter to the target clinical decision?
+
+From this perspective, the importance of missingness should not be evaluated solely by the percentage of missing data.
+
+We should also consider where the information is missing, the plausible clinical mechanism, the sensitivity of the endpoint, and the decision threshold.
+
+This way of thinking is especially valuable for clinical research teams with limited resources.
+
+---
+
+# VII. A Simple Mathematical Example: Why Focus on the Impact of Missingness on the Conclusion?
+
+Suppose a randomized trial has 50 patients in each group, with binary response as the primary endpoint.
+
+We observe:
+
+Treatment group: 16 patients with confirmed responses and 6 with unknown outcomes.
+
+Control group: 10 patients with confirmed responses and 4 with unknown outcomes.
+
+For simplicity, assume that all other patients with observed outcomes have been confirmed not to meet the response definition, and that we make no additional assumptions about the true binary status of patients whose outcomes are missing.
+
+Then the logical bounds on the true response proportion in the treatment group are:
+
+$$
+\frac{16}{50}\le p_T\le\frac{16+6}{50},
+$$
+
+or:
+
+$$
+0.32\le p_T\le0.44.
+$$
+
+For the control group:
+
+$$
+\frac{10}{50}\le p_C\le\frac{10+4}{50},
+$$
+
+or:
+
+$$
+0.20\le p_C\le0.28.
+$$
+
+Therefore, the identification bounds for the true response risk difference are:
+
+$$
+0.32-0.28\le p_T-p_C\le0.44-0.20,
+$$
+
+which gives:
+
+$$
+0.04\le p_T-p_C\le0.24.
+$$
+
+An important clarification: these are logical bounds arising from the possible unobserved outcomes given the classifications of the observed patients. They are not a confidence interval, and they do not incorporate sampling error.
+
+This example is interesting.
+
+Even if we know nothing about the response status of the patients with missing outcomes, under these assumptions the treatment group's response proportion remains higher than the control group's.
+
+However, the magnitude of the difference could range from 4 to 24 percentage points.
+
+That may be very important for clinical interpretation.
+
+If the research team uses only a fixed NRI analysis, it may report:
+
+Treatment group: 32%; control group: 20%; risk difference: 12 percentage points.
+
+That number is not useless.
+
+But if we fail to distinguish “no confirmed response” from “true response status unknown,” we risk treating the result of an analysis rule as though it directly identified the underlying true response rate.
+
+I would rather show the clinical team all of the following:
+
+What is the observed evidence?
+
+How much uncertainty is introduced by the missing information?
+
+Under which assumptions is the conclusion stable?
+
+Under what circumstances would it change?
+
+This example uses no complex statistical model, yet clearly reveals the relationship between evidence and decisions.
+
+Of course, a genuine confirmatory analysis must follow the prespecified estimand, statistical hypothesis, uncertainty quantification, and testing rules.
+
+The purpose of this simple illustration is not to replace formal statistical analysis, but to help us understand the information boundaries created by unobserved outcomes.
+
+---
+
+# VIII. Sensitivity Analysis Should Ask More Than Whether Statistical Significance Changes
+
+I believe that one of the most important purposes of missing-data analysis is to help us understand how much our conclusions depend on assumptions that cannot be verified.
+
+We should take sensitivity analysis beyond a purely methodological comparison and use it to evaluate the reliability of the evidence.
+
+For example, in a simplified analysis of a continuous endpoint, let:
+
+$$
+\mu_{a,\mathrm{mis}}
+=
+\mu_{a,\mathrm{MAR}}+\delta_a,
+$$
+
+where $\delta_a$ represents the deviation in the average outcome among patients with missing data in treatment group $a$ from the value predicted under MAR.
+
+If larger values indicate better clinical outcomes, a negative $\delta_a$ may mean that patients with missing outcomes fared worse than the model predicts.
+
+In a simple, single-time-point comparison of group means, if the proportion of missing data in group $a$ is $\pi_a$, the mean difference changes approximately as follows with the offset parameters:
+
+$$
+\theta(\delta_1,\delta_0)
+=
+\theta_{\mathrm{MAR}}+\pi_1\delta_1-\pi_0\delta_0.
+$$
+
+This is not a general formula for every longitudinal or complex-estimand model. It is merely a simplified example to illustrate the idea.
+
+What is genuinely interesting is not scanning $\delta$ from −10 to +10 and then displaying a graph.
+
+Instead, we should ask:
+
+Based on clinical knowledge, what values of $\delta$ are plausible?
+
+If patients leave the study because of worsening disease, what would be a reasonable range of offsets?
+
+If patients are missing mainly for nonmedical reasons, what range would make sense?
+
+Could the treatment and control groups have different missingness mechanisms?
+
+How large would the offset need to be before the primary clinical conclusion changes?
+
+The point at which the conclusion crosses a clinical or statistical decision threshold is the tipping point.
+
+But tipping-point analysis has its own easily overlooked problem:
+
+**Finding a mathematical parameter value that reverses the conclusion does not mean that value is clinically plausible.**
+
+Thus, a good sensitivity analysis should not merely report:
+
+“When $\delta=-3.7$, the p-value exceeds 0.05.”
+
+It should also explain:
+
+How much clinical deterioration does such a deviation represent?
+
+Does actual clinical experience support deterioration of that magnitude?
+
+Could such a deviation plausibly occur in only one treatment group?
+
+If we lack the relevant clinical data, can we remain appropriately cautious about these assumptions?
+
+Ultimately, I want sensitivity analysis to answer:
+
+**How much unobserved information would have to differ from our assumptions before the clinical decision changes—and is that difference clinically plausible?**
+
+Of course, primary sensitivity analyses should generally examine the robustness of key estimation assumptions for the same estimand.
+
+If we change the estimand—for example, moving from a treatment-policy effect to a hypothetical effect—the analysis may still provide supplementary value, but it is not simply another test of the robustness of the same result.
+
+That is a very important methodological boundary.
+
+---
