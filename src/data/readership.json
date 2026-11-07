@@ -2,10 +2,10 @@
   "status": "ready",
   "source": "Google Analytics 4",
   "since": "2026-10-24",
-  "through": "2026-11-05",
-  "updatedAt": "2026-11-06T17:57:04.231Z",
+  "through": "2026-11-06",
+  "updatedAt": "2026-11-07T16:49:55.407Z",
   "totals": {
-    "views": 98,
+    "views": 114,
     "totalUsers": 2,
     "activeUsers": 2
   },
@@ -23,6 +23,10 @@
       "views": 2
     },
     {
+      "path": "/essays/missing-data-where-should-statisticians-begin-zh/",
+      "views": 2
+    },
+    {
       "path": "/essays/off-study-is-not-off-the-evidence/",
       "views": 1
     }
@@ -31,7 +35,7 @@
     {
       "code": "US",
       "name": "United States",
-      "views": 98,
+      "views": 114,
       "totalUsers": 2,
       "activeUsers": 2
     }
