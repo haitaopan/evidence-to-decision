@@ -2,10 +2,10 @@
   "status": "ready",
   "source": "Google Analytics 4",
   "since": "2026-10-24",
-  "through": "2026-11-06",
-  "updatedAt": "2026-11-07T16:49:55.407Z",
+  "through": "2026-11-07",
+  "updatedAt": "2026-11-08T17:02:07.933Z",
   "totals": {
-    "views": 114,
+    "views": 116,
     "totalUsers": 2,
     "activeUsers": 2
   },
@@ -19,11 +19,11 @@
       "views": 3
     },
     {
-      "path": "/essays/before-we-borrow-can-the-evidence-be-repaired/",
-      "views": 2
+      "path": "/essays/missing-data-where-should-statisticians-begin-zh/",
+      "views": 3
     },
     {
-      "path": "/essays/missing-data-where-should-statisticians-begin-zh/",
+      "path": "/essays/before-we-borrow-can-the-evidence-be-repaired/",
       "views": 2
     },
     {
@@ -35,7 +35,7 @@
     {
       "code": "US",
       "name": "United States",
-      "views": 114,
+      "views": 116,
       "totalUsers": 2,
       "activeUsers": 2
     }
