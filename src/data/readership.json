@@ -2,24 +2,24 @@
   "status": "ready",
   "source": "Google Analytics 4",
   "since": "2026-10-24",
-  "through": "2026-11-07",
-  "updatedAt": "2026-11-08T17:02:07.933Z",
+  "through": "2026-11-08",
+  "updatedAt": "2026-11-09T21:26:28.655Z",
   "totals": {
-    "views": 116,
+    "views": 118,
     "totalUsers": 2,
     "activeUsers": 2
   },
   "pages": [
+    {
+      "path": "/essays/missing-data-where-should-statisticians-begin-zh/",
+      "views": 4
+    },
     {
       "path": "/essays/when-not-yet-becomes-no/",
       "views": 4
     },
     {
       "path": "/essays/a-promising-signal-is-not-a-development-plan/",
-      "views": 3
-    },
-    {
-      "path": "/essays/missing-data-where-should-statisticians-begin-zh/",
       "views": 3
     },
     {
@@ -35,7 +35,7 @@
     {
       "code": "US",
       "name": "United States",
-      "views": 116,
+      "views": 118,
       "totalUsers": 2,
       "activeUsers": 2
     }
