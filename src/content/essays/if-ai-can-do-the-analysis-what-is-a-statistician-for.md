@@ -11,6 +11,8 @@ draft: false
 featured: false
 ---
 
+[阅读中文完整版：如果 AI 已经能完成统计分析，我们还需要统计学家吗？](/essays/ru-guo-ai-yi-jing-neng-wan-cheng-tong-ji-fen-xi/)
+
 ## The Analysis Is Finished. But Have We Answered the Question?
 
 Imagine a clinical development team evaluating a promising new cancer treatment.
