@@ -2,6 +2,7 @@
 title: "If AI Can Do the Analysis, What Is a Statistician For?"
 description: "From Statistical Execution to Scientific Judgment and Better Decisions"
 pubDate: 2026-11-02
+updatedDate: 2026-11-13
 topics:
   - AI & Methods
   - Evidence & Decisions
@@ -372,6 +373,84 @@ Having a statistician approve an AI-generated report provides limited protection
 The goal is not to defend human judgment against machines.
 
 **It is to create more trustworthy systems for producing, examining, and acting on scientific evidence.**
+
+## Beyond Task Allocation: Building an Evidence-Generation Ecosystem
+
+There is another way to think about the future of statisticians in the age of AI.
+
+We often begin by dividing the work: which tasks should AI perform, and which should remain with human experts?
+
+Perhaps AI handles programming and simulations while statisticians interpret the results and provide judgment.
+
+That distinction is understandable, especially in today's research workflows. But it may become less useful as AI capabilities develop.
+
+AI can already do more than execute instructions. It can help formulate research questions, suggest trial designs, identify contradictions in an argument, challenge assumptions, and recommend additional analyses. Human experts can also contribute across all of these activities.
+
+The four dimensions of statistical contribution—execution, interpretation, judgment, and decision leadership—should therefore not be mistaken for permanent boundaries between human and machine capabilities.
+
+**They describe activities in the development and use of scientific evidence, not tasks that one group can claim to own.**
+
+### From a Division of Labor to an Evidence Ecosystem
+
+![A conceptual evidence-generation ecosystem showing human experts and AI participating in scientific questions, evidence generation, interpretation and validation, and clinical decisions, supported throughout by traceability, verification, and accountability.](/images/evidence-generation-ecosystem-en.svg)
+
+*Figure. Human experts and AI can contribute throughout the evidence-generation process. Data provenance, testable assumptions, independent validation, and clear decision accountability are safeguards that should span every stage. Decisions create new questions, making this an iterative rather than a one-way process.*
+
+A more useful question is how to build an **evidence-generation ecosystem** in which human experts, AI systems, data, statistical methods, and decision processes work together.
+
+During question formulation, AI might synthesize existing knowledge and reveal alternative hypotheses. Clinicians, statisticians, patients, and other experts help determine which questions are scientifically meaningful and clinically consequential.
+
+During study design and analysis, AI might generate code, run simulations, organize heterogeneous data, or compare modeling strategies. Statistical scientists can contribute to design choices, data-generating assumptions, methodological development, and verification.
+
+During interpretation, both AI and human experts can identify possible bias, propose sensitivity analyses, and examine the boundaries of an inference.
+
+During decision-making, AI might help compare likely consequences under different scenarios. But choices that affect patients and research programs still require clearly assigned human authority, governance, and accountability.
+
+The opportunity is not simply to decide where a person must intervene in an automated pipeline.
+
+**It is to develop a scientific system in which human and AI contributions can inform, challenge, and improve one another.**
+
+### A Persuasive Evidence Chain Is Not Necessarily Trustworthy Evidence
+
+AI may increasingly generate what looks like a complete chain of evidence.
+
+Imagine a system that retrieves clinical literature, harmonizes historical data, fits a prediction model, evaluates a trial design, and produces a polished argument for advancing a new oncology treatment.
+
+Its report may be coherent, detailed, and persuasive.
+
+But an apparently complete evidence chain is not the same as a valid chain of inference.
+
+Were the source studies appropriate for the question? Were their outcomes defined consistently? Are the populations comparable? Does the analysis support a causal claim, or only an association? Has the model been validated for the proposed context of use? Were important sources of uncertainty and structural bias examined? Does the final recommendation go beyond what the evidence can justify?
+
+A system may connect many analytical steps while carrying an unexamined assumption from the beginning to the end. Later steps can make the conclusion look more precise without making the original assumption more credible.
+
+The same warning applies to evidence assembled by human researchers. Human-authored arguments also require scrutiny.
+
+So the central question is not who generated the evidence narrative.
+
+It is whether the underlying information, assumptions, methods, and inferences are traceable, reproducible where appropriate, open to challenge, and sufficiently reliable for the intended claim.
+
+### Where Do Statisticians Contribute?
+
+In such an ecosystem, statisticians do not have to defend an exclusive claim over programming, interpretation, or even scientific judgment.
+
+Their contribution can instead be grounded in the methods and habits of statistical science.
+
+They help translate substantive questions into estimands and study designs. They distinguish sampling uncertainty from potential systematic bias. They develop methods for assessing assumptions, evaluating robustness, and comparing alternative courses of action. They can also help build and audit AI-assisted analytical workflows rather than merely sign off on their outputs.
+
+These activities require collaboration. Clinicians contribute knowledge of disease and treatment; patients help define meaningful outcomes; data scientists and engineers develop technical systems; regulatory and institutional leaders clarify the applicable decision requirements.
+
+Statistical expertise becomes valuable when it improves how the whole system reasons from evidence—not when it protects a task from automation.
+
+The ecosystem must also keep learning. New trial findings can challenge historical assumptions. Model performance can deteriorate in a new population. A development decision can create new questions that require additional data.
+
+Evidence generation is therefore not a one-way assembly line that ends with a report. It is a process of generating claims, testing them, acting within justified limits, and revisiting conclusions as new information becomes available.
+
+**The defining question for the future of statistical science may not be which tasks statisticians can keep. It may be what statistical science can contribute to the reliability of the entire evidence-generation and decision-making ecosystem.**
+
+This is not a claim that AI will never acquire capabilities we now associate with experienced statisticians. It is a commitment to the continuing need for testable reasoning, trustworthy evidence, transparent uncertainty, and accountable decisions.
+
+And it raises an important educational question: if future statisticians will work within such an ecosystem, how should we help them develop the independent reasoning and judgment that make their contributions meaningful?
 
 ## The Training Paradox: Who Will Develop Judgment?
 
