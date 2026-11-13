@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" role="img" aria-labelledby="t d">
+<title id="t">人类与 AI 共同参与的证据生成生态系统</title>
+<desc id="d">科学问题与研究设计、证据生成与统计分析、证据解释与验证、临床决策与反馈。AI 和人类都可参与全过程，关键科学主张均应接受验证和责任治理。</desc>
+<defs><marker id="arr" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 L8 4.5 L0 9 z" fill="#65839C"/></marker></defs>
+<rect width="1200" height="640" rx="30" fill="#F7FAFC"/>
+<text x="600" y="64" font-family="Noto Sans CJK SC, sans-serif" text-anchor="middle" font-weight="700" font-size="33" fill="#15314E">人类与 AI 共同参与的证据生成生态系统</text>
+<text x="600" y="103" font-family="Noto Sans CJK SC, sans-serif" text-anchor="middle" font-size="18" fill="#536B83">重点不是划分谁能做什么，而是让每一个重要的科学主张经得起检验</text>
+<rect x="44" y="166" width="217" height="244" rx="18" fill="#FFFFFF" stroke="#CBD9E4" stroke-width="2"/>
+<circle cx="75" cy="197" r="16" fill="#173F63"/><text x="75" y="203" text-anchor="middle" font-family="Arial" font-size="17" font-weight="bold" fill="#FFFFFF">1</text>
+<text x="152" y="239" text-anchor="middle" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="700" fill="#183650">科学问题与研究设计</text>
+<text x="152" y="270" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#648097">Question &amp; Design</text>
+<line x1="65" y1="289" x2="240" y2="289" stroke="#D8E2EA"/>
+<rect x="64" y="313" width="82" height="34" rx="16" fill="#DCECF8"/><text x="105" y="336" text-anchor="middle" font-family="Noto Sans CJK SC, sans-serif" font-size="16" fill="#1C6593">AI 参与</text>
+<rect x="156" y="313" width="86" height="34" rx="16" fill="#E2F2E9"/><text x="199" y="336" text-anchor="middle" font-family="Noto Sans CJK SC, sans-serif" font-size="16" fill="#23845F">人类参与</text>
+<text x="152" y="381" text-anchor="middle" font-family="Noto Sans CJK SC, sans-serif" font-size="14" fill="#4D6275">研究什么、为谁研究？</text>
+<path d="M266 283 H333" stroke="#65839C" stroke-width="2.5" marker-end="url(#arr)" fill="none"/>
+<rect x="343" y="166" width="217" height="244" rx="18" fill="#FFFFFF" stroke="#CBD9E4" stroke-width="2"/>
+<circle cx="374" cy="197" r="16" fill="#173F63"/><text x="374" y="203" text-anchor="middle" font-family="Arial" font-size="17" font-weight="bold" fill="#FFFFFF">2</text>
+<text x="451" y="239" text-anchor="middle" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="700" fill="#183650">证据生成与统计分析</text>
+<text x="451" y="270" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#648097">Evidence &amp; Analysis</text>
+<line x1="364" y1="289" x2="539" y2="289" stroke="#D8E2EA"/>
+<rect x="363" y="313" width="82" height="34" rx="16" fill="#DCECF8"/><text x="404" y="336" text-anchor="middle" font-family="Noto Sans CJK SC, sans-serif" font-size="16" fill="#1C6593">AI 参与</text>
+<rect x="455" y="313" width="86" height="34" rx="16" fill="#E2F2E9"/><text x="498" y="336" text-anchor="middle" font-family="Noto Sans CJK SC, sans-serif" font-size="16" fill="#23845F">人类参与</text>
+<text x="451" y="381" text-anchor="middle" font-family="Noto Sans CJK SC, sans-serif" font-size="14" fill="#4D6275">数据如何产生、如何分析？</text>
+<path d="M565 283 H632" stroke="#65839C" stroke-width="2.5" marker-end="url(#arr)" fill="none"/>
+<rect x="642" y="166" width="217" height="244" rx="18" fill="#FFFFFF" stroke="#CBD9E4" stroke-width="2"/>
+<circle cx="673" cy="197" r="16" fill="#173F63"/><text x="673" y="203" text-anchor="middle" font-family="Arial" font-size="17" font-weight="bold" fill="#FFFFFF">3</text>
+<text x="750" y="239" text-anchor="middle" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="700" fill="#183650">证据解释与验证</text>
+<text x="750" y="270" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#648097">Interpretation &amp; Validation</text>
+<line x1="663" y1="289" x2="838" y2="289" stroke="#D8E2EA"/>
+<rect x="662" y="313" width="82" height="34" rx="16" fill="#DCECF8"/><text x="703" y="336" text-anchor="middle" font-family="Noto Sans CJK SC, sans-serif" font-size="16" fill="#1C6593">AI 参与</text>
+<rect x="754" y="313" width="86" height="34" rx="16" fill="#E2F2E9"/><text x="797" y="336" text-anchor="middle" font-family="Noto Sans CJK SC, sans-serif" font-size="16" fill="#23845F">人类参与</text>
+<text x="750" y="381" text-anchor="middle" font-family="Noto Sans CJK SC, sans-serif" font-size="14" fill="#4D6275">结论是否可靠、边界在哪？</text>
+<path d="M864 283 H931" stroke="#65839C" stroke-width="2.5" marker-end="url(#arr)" fill="none"/>
+<rect x="941" y="166" width="217" height="244" rx="18" fill="#FFFFFF" stroke="#CBD9E4" stroke-width="2"/>
+<circle cx="972" cy="197" r="16" fill="#173F63"/><text x="972" y="203" text-anchor="middle" font-family="Arial" font-size="17" font-weight="bold" fill="#FFFFFF">4</text>
+<text x="1049" y="239" text-anchor="middle" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="700" fill="#183650">临床决策与反馈</text>
+<text x="1049" y="270" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#648097">Decisions &amp; Feedback</text>
+<line x1="962" y1="289" x2="1137" y2="289" stroke="#D8E2EA"/>
+<rect x="961" y="313" width="82" height="34" rx="16" fill="#DCECF8"/><text x="1002" y="336" text-anchor="middle" font-family="Noto Sans CJK SC, sans-serif" font-size="16" fill="#1C6593">AI 参与</text>
+<rect x="1053" y="313" width="86" height="34" rx="16" fill="#E2F2E9"/><text x="1096" y="336" text-anchor="middle" font-family="Noto Sans CJK SC, sans-serif" font-size="16" fill="#23845F">人类参与</text>
+<text x="1049" y="381" text-anchor="middle" font-family="Noto Sans CJK SC, sans-serif" font-size="14" fill="#4D6275">证据足以支持什么行动？</text>
+<rect x="68" y="452" width="1064" height="82" rx="17" fill="#E7EFF6" stroke="#B4C9DB" stroke-width="1.5"/>
+<text x="600" y="487" text-anchor="middle" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="700" fill="#193E61">贯穿全过程的科学要求</text>
+<text x="600" y="517" text-anchor="middle" font-family="Noto Sans CJK SC, sans-serif" font-size="18" fill="#3C617A">可追溯的数据来源 · 可检验的推断假设 · 独立复核 · 明确的决策责任</text>
+<path d="M1046 410 V561 H151 V539" stroke="#83A0B3" stroke-width="2.5" fill="none" stroke-dasharray="8 7" marker-end="url(#arr)"/>
+<rect x="360" y="545" width="478" height="50" rx="24" fill="#F7FAFC" />
+<text x="600" y="576" text-anchor="middle" font-family="Noto Sans CJK SC, sans-serif" font-size="17" fill="#42647B">决策产生新问题，证据系统持续学习和改进</text>
+<text x="600" y="626" text-anchor="middle" font-family="Noto Sans CJK SC, sans-serif" font-size="13" fill="#71879A">概念图｜Evidence to Decision · AI 可以参与判断，但决策权限与责任必须清晰界定</text>
+</svg>
