@@ -1,0 +1,20 @@
+---
+import type { LanguageView } from '../lib/bilingual';
+const {active='all', context='home', topicSlug} = Astro.props as {
+ active?: LanguageView;
+ context?: 'home' | 'archive' | 'topic';
+ topicSlug?: string;
+};
+const root = import.meta.env.BASE_URL.replace(/\/$/,'');
+const links = context === 'home'
+ ? {all:'/',en:'/language/en/',zh:'/language/zh/'}
+ : context === 'archive'
+ ? {all:'/essays/',en:'/essays/language/en/',zh:'/essays/language/zh/'}
+ : {all:`/topics/${topicSlug}/`,en:`/topics/${topicSlug}/en/`,zh:`/topics/${topicSlug}/zh/`};
+const tabs: {value:LanguageView;label:string}[] = [
+ {value:'all',label:'All'},{value:'en',label:'English'},{value:'zh',label:'中文'}
+];
+---
+<nav class="language-tabs" aria-label="Filter posts by language">
+{tabs.map(tab => <a href={`${root}${links[tab.value]}`} class:list={[{active:active === tab.value}]} aria-current={active === tab.value ? 'page' : undefined} lang={tab.value === 'zh' ? 'zh-CN' : undefined}>{tab.label}</a>)}
+</nav>

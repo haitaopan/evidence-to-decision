@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BilingualPostList from '../../../components/BilingualPostList.astro';
+import LanguageTabs from '../../../components/LanguageTabs.astro';
+import TopicSidebar from '../../../components/TopicSidebar.astro';
+import { sortedGroups, type BlogLanguage } from '../../../lib/bilingual';
+import { getCollection } from 'astro:content';
+export function getStaticPaths(){return ['en','zh'].map(lang=>({params:{lang},props:{lang}}));}
+const {lang}=Astro.props as {lang:BlogLanguage};
+const essays=await getCollection('essays',({data})=>!data.draft);
+const groups=sortedGroups(essays,lang);
+const heading=lang==='zh'?'中文文章':'English archive';
+---
+<BaseLayout title={heading} lang={lang}>
+<div class="archive-intro"><h1>{heading}</h1><p>{lang==='zh'?'按照发表日期从新到旧排列。':'All English essays, newest first.'}</p></div>
+<div class="blog-layout"><section class="blog-main" aria-label={heading}>
+<LanguageTabs context="archive" active={lang}/>
+<BilingualPostList groups={groups} view={lang}/>
+</section><TopicSidebar posts={essays}/></div>
+</BaseLayout>

@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BilingualPostList from '../../components/BilingualPostList.astro';
+import LanguageTabs from '../../components/LanguageTabs.astro';
+import TopicSidebar from '../../components/TopicSidebar.astro';
+import ReadershipPanel from '../../components/ReadershipPanel.astro';
+import { sortedGroups, type BlogLanguage } from '../../lib/bilingual';
+import { getCollection } from 'astro:content';
+export function getStaticPaths(){return ['en','zh'].map(lang=>({params:{lang},props:{lang}}));}
+const {lang}=Astro.props as {lang:BlogLanguage};
+const published=await getCollection('essays',({data})=>!data.draft);
+const groups=sortedGroups(published,lang);
+const root=import.meta.env.BASE_URL.replace(/\/$/,'');
+---
+<BaseLayout lang={lang}>
+<div class="intro"><h1>Evidence to Decision</h1>
+<p class="owner-label">Haitao Pan’s Blog</p>
+<p class="tagline">Clinical trials, evidence, and the decisions between them.</p></div>
+<div class="blog-layout">
+  <section class="blog-main" aria-label={lang==='zh'?'最新中文文章':'Latest English posts'}>
+    <div class="feed-heading"><h2>{lang==='zh'?'最新文章':'Latest posts'}</h2></div>
+    <LanguageTabs context="home" active={lang}/>
+    <BilingualPostList groups={groups.slice(0,10)} view={lang}/>
+    {groups.length>10 && <a class="archive-link" href={`${root}/essays/language/${lang}/`}>{lang==='zh'?'查看全部中文文章 →':'View all English posts →'}</a>}
+  </section>
+  <TopicSidebar posts={published}/>
+</div>
+<ReadershipPanel compact={true}/>
+</BaseLayout>

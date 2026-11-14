@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BilingualPostList from '../../../components/BilingualPostList.astro';
+import LanguageTabs from '../../../components/LanguageTabs.astro';
+import TopicSidebar from '../../../components/TopicSidebar.astro';
+import { getCollection } from 'astro:content';
+import { TOPICS, topicSlug } from '../../../lib/topics';
+import { sortedGroups, type BlogLanguage } from '../../../lib/bilingual';
+export function getStaticPaths(){
+ return TOPICS.flatMap(topic=>['en','zh'].map(lang=>({params:{topic:topicSlug(topic),lang},props:{topic,lang}})));
+}
+const {topic,lang}=Astro.props as {topic:typeof TOPICS[number];lang:BlogLanguage};
+const all=await getCollection('essays',({data})=>!data.draft);
+const posts=all.filter(e=>e.data.topics.includes(topic));
+const groups=sortedGroups(posts,lang);
+const root=import.meta.env.BASE_URL.replace(/\/$/,'');
+---
+<BaseLayout title={topic} lang={lang}>
+<div class="archive-intro"><p class="breadcrumb"><a href={`${root}/essays/`}>All essays</a> / Topics</p><h1>{topic}</h1></div>
+<div class="blog-layout"><section class="blog-main" aria-label={`${lang} essays on ${topic}`}>
+<LanguageTabs context="topic" topicSlug={topicSlug(topic)} active={lang}/>
+<BilingualPostList groups={groups} view={lang}/>
+</section><TopicSidebar posts={all} activeTopic={topic}/></div>
+</BaseLayout>
