@@ -8,6 +8,7 @@ topics:
   - Evidence & Decisions
   - Oncology & Rare Diseases
 lang: en
+translationKey: before-we-borrow-can-the-evidence-be-repaired
 draft: false
 featured: false
 ---
