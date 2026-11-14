@@ -7,6 +7,7 @@ topics:
   - External Controls
   - Evidence & Decisions
   - Oncology & Rare Diseases
+lang: en
 draft: false
 featured: false
 ---

@@ -3,6 +3,8 @@ title: "Missing Data：统计学家应该从哪里开始？"
 description: "从缺失值填补到临床证据的完整工作流程"
 pubDate: 2026-11-06
 topics: ["Clinical Trials", "Evidence & Decisions", "AI & Methods"]
+lang: zh
+translationKey: missing-data-where-to-begin
 draft: false
 featured: false
 ---

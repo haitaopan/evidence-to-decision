@@ -3,6 +3,8 @@ title: "当临床试验已经获得足够的证据，我们为什么还说它“
 description: "从 Early Stopping 到完成临床试验真正的科学任务"
 pubDate: 2026-11-13
 topics: ["Clinical Trials", "Evidence & Decisions", "DSMB & Monitoring"]
+lang: zh
+translationKey: when-has-a-clinical-trial-collected-enough-evidence
 draft: false
 featured: false
 ---

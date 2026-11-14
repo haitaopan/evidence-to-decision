@@ -8,6 +8,8 @@ topics:
   - Evidence & Decisions
   - Clinical Trials
   - Oncology & Rare Diseases
+lang: en
+translationKey: if-ai-can-do-the-analysis
 draft: false
 featured: false
 ---

@@ -7,6 +7,7 @@ topics:
   - Evidence & Decisions
   - Oncology & Rare Diseases
   - AI & Methods
+lang: en
 draft: false
 featured: false
 ---

@@ -6,6 +6,7 @@ topics:
   - Clinical Trials
   - Evidence & Decisions
   - Oncology & Rare Diseases
+lang: en
 draft: false
 featured: false
 ---

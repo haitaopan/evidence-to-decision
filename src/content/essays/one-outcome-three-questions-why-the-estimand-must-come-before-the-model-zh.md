@@ -3,6 +3,8 @@ title: "同一个临床结局，三个不同的问题：为什么必须先定义
 description: "重新思考临床试验中连续型、有序分类与二分类结局的统计分析"
 pubDate: 2026-11-13
 topics: ["Clinical Trials", "Evidence & Decisions", "AI & Methods"]
+lang: zh
+translationKey: one-outcome-three-questions
 draft: false
 featured: false
 ---

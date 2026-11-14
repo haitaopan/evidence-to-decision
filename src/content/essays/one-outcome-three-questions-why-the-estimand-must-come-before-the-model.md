@@ -3,6 +3,8 @@ title: "One Outcome, Three Questions: Why the Estimand Must Come Before the Mode
 description: "Rethinking Continuous, Ordinal, and Binary Analyses in Clinical Trials"
 pubDate: 2026-11-13
 topics: ["Clinical Trials", "Evidence & Decisions", "AI & Methods"]
+lang: en
+translationKey: one-outcome-three-questions
 draft: false
 featured: false
 ---

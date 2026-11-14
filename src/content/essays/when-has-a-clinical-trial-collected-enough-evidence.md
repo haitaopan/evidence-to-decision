@@ -3,6 +3,8 @@ title: "When Has a Clinical Trial Collected Enough Evidence?"
 description: "Beyond Early Stopping: From Completing a Trial to Completing Its Scientific Mission"
 pubDate: 2026-11-13
 topics: ["Clinical Trials", "Evidence & Decisions", "DSMB & Monitoring"]
+lang: en
+translationKey: when-has-a-clinical-trial-collected-enough-evidence
 draft: false
 featured: false
 ---

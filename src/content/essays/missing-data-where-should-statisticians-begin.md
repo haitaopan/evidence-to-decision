@@ -3,6 +3,8 @@ title: "Missing Data: Where Should Statisticians Begin?"
 description: "A Complete Workflow from Imputation to Clinical Evidence"
 pubDate: 2026-11-06
 topics: ["Clinical Trials", "Evidence & Decisions", "AI & Methods"]
+lang: en
+translationKey: missing-data-where-to-begin
 draft: false
 featured: false
 ---
