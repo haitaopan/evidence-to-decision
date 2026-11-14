@@ -2,10 +2,10 @@
   "status": "ready",
   "source": "Google Analytics 4",
   "since": "2026-10-24",
-  "through": "2026-11-11",
-  "updatedAt": "2026-11-12T18:54:06.669Z",
+  "through": "2026-11-13",
+  "updatedAt": "2026-11-14T17:03:38.788Z",
   "totals": {
-    "views": 120,
+    "views": 136,
     "totalUsers": 3,
     "activeUsers": 3
   },
@@ -27,7 +27,19 @@
       "views": 2
     },
     {
+      "path": "/essays/if-ai-can-do-the-analysis-what-is-a-statistician-for/",
+      "views": 1
+    },
+    {
       "path": "/essays/off-study-is-not-off-the-evidence/",
+      "views": 1
+    },
+    {
+      "path": "/essays/one-outcome-three-questions-why-the-estimand-must-come-before-the-model-zh/",
+      "views": 1
+    },
+    {
+      "path": "/essays/when-has-a-clinical-trial-collected-enough-evidence/",
       "views": 1
     }
   ],
@@ -35,7 +47,7 @@
     {
       "code": "US",
       "name": "United States",
-      "views": 120,
+      "views": 136,
       "totalUsers": 3,
       "activeUsers": 3
     }
