@@ -1,11 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import PostList from '../../components/PostList.astro';
+import BilingualPostList from '../../components/BilingualPostList.astro';
+import LanguageTabs from '../../components/LanguageTabs.astro';
+import { sortedGroups } from '../../lib/bilingual';
 import TopicSidebar from '../../components/TopicSidebar.astro';
 import { getCollection } from 'astro:content';
-const essays=(await getCollection('essays',({data})=>!data.draft)).sort((a,b)=>b.data.pubDate.valueOf()-a.data.pubDate.valueOf()||a.data.title.localeCompare(b.data.title));
+const essays=await getCollection('essays',({data})=>!data.draft);
+const groups=sortedGroups(essays);
 ---
 <BaseLayout title="Archive">
 <div class="archive-intro"><h1>Archive</h1><p>All posts, newest first.</p></div>
-<div class="blog-layout"><section class="blog-main" aria-label="All essays"><PostList posts={essays}/></section><TopicSidebar posts={essays}/></div>
+<div class="blog-layout"><section class="blog-main" aria-label="All essays"><LanguageTabs context="archive" active="all"/><BilingualPostList groups={groups}/></section><TopicSidebar posts={essays}/></div>
 </BaseLayout>

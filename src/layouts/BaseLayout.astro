@@ -2,19 +2,23 @@
 import 'katex/dist/katex.min.css';
 import '../styles/global.css';
 import AnalyticsConsent from '../components/AnalyticsConsent.astro';
-const {title='Evidence to Decision',description='Clinical trials, evidence, and the decisions between them.'}=Astro.props;
+const {title='Evidence to Decision',description='Clinical trials, evidence, and the decisions between them.',lang='en',alternates=[]}=Astro.props as {
+  title?:string;description?:string;lang?:'en'|'zh';
+  alternates?:Array<{lang:string;path:string}>;
+};
 const base=import.meta.env.BASE_URL.replace(/\/$/,'');
 const path=(p:string)=>`${base}${p}`;
 const canonical=new URL(Astro.url.pathname,Astro.site||Astro.url.origin).toString();
 ---
-<!doctype html><html lang="en"><head>
+<!doctype html><html lang={lang === 'zh' ? 'zh-CN' : 'en'}><head>
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta name="theme-color" content="#ffffff"/><meta name="description" content={description}/>
 <meta name="author" content="Haitao Pan, PhD"/>
 <meta property="og:type" content="website"/><meta property="og:site_name" content="Evidence to Decision"/>
 <meta property="og:title" content={title}/><meta property="og:description" content={description}/>
 <meta property="og:url" content={canonical}/><meta name="twitter:card" content="summary"/>
-<link rel="canonical" href={canonical}/><link rel="icon" href={path('/favicon.svg')} type="image/svg+xml"/>
+<link rel="canonical" href={canonical}/>
+{alternates.map(alt => <link rel="alternate" hreflang={alt.lang} href={new URL(`${base}${alt.path}`,Astro.site||Astro.url.origin).toString()}/>)}<link rel="icon" href={path('/favicon.svg')} type="image/svg+xml"/>
 <link rel="alternate" type="application/rss+xml" title="Evidence to Decision RSS" href={path('/rss.xml')}/>
 <title>{title === 'Evidence to Decision' ? title+' | Haitao Pan, PhD' : title+' | Evidence to Decision'}</title>
 </head><body><a class="skip" href="#content">Skip to content</a><div class="site-shell">

@@ -54,3 +54,13 @@ The blog now has an **active** Waline comment component on every published essay
 ## Public readership map and article views
 
 A public readership dashboard is installed at `/readership/` with a linked homepage summary, world map, country-level counts, and per-article view totals. It reuses Google Analytics 4 read-only aggregates via a daily GitHub Actions sync, with **no extra hosted visitor tracking service**. The numeric GA4 Property ID `560666026` and read-only service-account secret are both configured. First real public GA4 snapshot is now verified: through 2026-10-24, **17 measured page views, 1 tracked GA4 user, United States 17 views**, and one view per published essay. The scheduled sync refreshes daily and labels the reporting cut-off; consent blockers may undercount visits. Instructions: [PUBLIC_READERSHIP_SETUP.md](PUBLIC_READERSHIP_SETUP.md).
+
+## Bilingual navigation (English / 中文)
+
+- Keep the existing Home, Archive, Topics, Subscribe, Readership and original article URLs.
+- Language filters: Home `/`, `/language/en/`, `/language/zh/`; Archive `/essays/`, `/essays/language/en/`, `/essays/language/zh/`; Topics have matching per-language filters.
+- `lang: en|zh` defines the article language. A shared optional `translationKey` pairs actual translations. No translation is required.
+- The All feed shows each paired essay once, using the latest published edition as the lead title (English wins same-date ties).
+- Each article remains a separate published page with its own date, body, analytics and comments. Paired pages show language switching and SEO `hreflang`.
+- RSS `/rss.xml` and follow.it are **unchanged**; email alerts for separately published translations may still be separate.
+- Read the full policy in `BILINGUAL_EDITORIAL_GUIDE.md`.

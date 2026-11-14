@@ -2,6 +2,8 @@
 title: "Essay title"
 description: "One-sentence reason to read this essay."
 pubDate: 2026-10-23
+lang: en  # use zh for Chinese
+# translationKey: common-key-for-real-translation-pair
 # updatedDate: 2026-10-23
 topics:
   - "Clinical Trials"
