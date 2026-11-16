@@ -2,12 +2,12 @@
   "status": "ready",
   "source": "Google Analytics 4",
   "since": "2026-10-24",
-  "through": "2026-11-14",
-  "updatedAt": "2026-11-15T17:41:53.702Z",
+  "through": "2026-11-15",
+  "updatedAt": "2026-11-16T21:00:16.444Z",
   "totals": {
-    "views": 142,
-    "totalUsers": 3,
-    "activeUsers": 3
+    "views": 144,
+    "totalUsers": 4,
+    "activeUsers": 4
   },
   "pages": [
     {
@@ -50,6 +50,13 @@
       "views": 142,
       "totalUsers": 3,
       "activeUsers": 3
+    },
+    {
+      "code": "HK",
+      "name": "Hong Kong",
+      "views": 2,
+      "totalUsers": 1,
+      "activeUsers": 1
     }
   ]
 }
