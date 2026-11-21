@@ -2,10 +2,10 @@
   "status": "ready",
   "source": "Google Analytics 4",
   "since": "2026-10-24",
-  "through": "2026-11-19",
-  "updatedAt": "2026-11-20T19:05:34.758Z",
+  "through": "2026-11-20",
+  "updatedAt": "2026-11-21T17:57:30.045Z",
   "totals": {
-    "views": 152,
+    "views": 154,
     "totalUsers": 4,
     "activeUsers": 4
   },
@@ -39,6 +39,10 @@
       "views": 1
     },
     {
+      "path": "/essays/one-outcome-three-questions-why-the-estimand-must-come-before-the-model/",
+      "views": 1
+    },
+    {
       "path": "/essays/when-has-a-clinical-trial-collected-enough-evidence/",
       "views": 1
     }
@@ -47,7 +51,7 @@
     {
       "code": "US",
       "name": "United States",
-      "views": 150,
+      "views": 152,
       "totalUsers": 3,
       "activeUsers": 3
     },
