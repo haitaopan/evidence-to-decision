@@ -2,10 +2,10 @@
   "status": "ready",
   "source": "Google Analytics 4",
   "since": "2026-10-24",
-  "through": "2026-11-21",
-  "updatedAt": "2026-11-22T18:29:37.464Z",
+  "through": "2026-11-22",
+  "updatedAt": "2026-11-23T22:37:57.965Z",
   "totals": {
-    "views": 154,
+    "views": 155,
     "totalUsers": 4,
     "activeUsers": 4
   },
@@ -27,6 +27,10 @@
       "views": 2
     },
     {
+      "path": "/essays/one-outcome-three-questions-why-the-estimand-must-come-before-the-model/",
+      "views": 2
+    },
+    {
       "path": "/essays/if-ai-can-do-the-analysis-what-is-a-statistician-for/",
       "views": 1
     },
@@ -36,10 +40,6 @@
     },
     {
       "path": "/essays/one-outcome-three-questions-why-the-estimand-must-come-before-the-model-zh/",
-      "views": 1
-    },
-    {
-      "path": "/essays/one-outcome-three-questions-why-the-estimand-must-come-before-the-model/",
       "views": 1
     },
     {
@@ -61,6 +61,13 @@
       "views": 2,
       "totalUsers": 1,
       "activeUsers": 1
+    },
+    {
+      "code": "JP",
+      "name": "Japan",
+      "views": 1,
+      "totalUsers": 1,
+      "activeUsers": 0
     }
   ]
 }
