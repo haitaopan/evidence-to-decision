@@ -2,10 +2,10 @@
   "status": "ready",
   "source": "Google Analytics 4",
   "since": "2026-10-24",
-  "through": "2026-11-22",
-  "updatedAt": "2026-11-23T22:37:57.965Z",
+  "through": "2026-11-23",
+  "updatedAt": "2026-11-24T21:09:50.352Z",
   "totals": {
-    "views": 155,
+    "views": 159,
     "totalUsers": 4,
     "activeUsers": 4
   },
@@ -56,18 +56,18 @@
       "activeUsers": 3
     },
     {
+      "code": "JP",
+      "name": "Japan",
+      "views": 5,
+      "totalUsers": 1,
+      "activeUsers": 1
+    },
+    {
       "code": "HK",
       "name": "Hong Kong",
       "views": 2,
       "totalUsers": 1,
       "activeUsers": 1
-    },
-    {
-      "code": "JP",
-      "name": "Japan",
-      "views": 1,
-      "totalUsers": 1,
-      "activeUsers": 0
     }
   ]
 }
